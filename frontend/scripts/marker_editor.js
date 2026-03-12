@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let editMode = false;
   let dirty = false;
   let isSaving = false;
+  let savedSnapshot = {};
   const dirtyTypes = new Set();
 
   const history = [];
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const markerTools = document.getElementById('markerEditorTools');
 
   if (markerTools) {
-    markerTools.insertAdjacentHTML('beforeend', `
+    saveBtn?.insertAdjacentHTML('beforebegin', `
       <button id="undoMarkerBtn" type="button">Undo</button>
       <button id="redoMarkerBtn" type="button">Redo</button>
       <small id="markerDirtyState" style="display:block;margin-top:6px;color:#666;">No changes</small>
@@ -104,6 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return markerState[markerType];
   }
 
+  function syncAddButtons() {
+    markerTypes.forEach(type => {
+      if (!addButtons[type]) return;
+      addButtons[type].dataset.active = addMode === type ? 'true' : 'false';
+    });
+  }
+
   function buildIcon(markerType) {
     const config = getConfig(markerType);
     return L.icon({
@@ -137,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (toggleEditBtn) {
       toggleEditBtn.textContent = `Edit Mode: ${editMode ? 'ON' : 'OFF'}`;
-      toggleEditBtn.style.backgroundColor = editMode ? '#2e7d32' : '#3f51b5';
+      toggleEditBtn.dataset.editMode = editMode ? 'on' : 'off';
     }
   }
 
@@ -158,6 +166,47 @@ document.addEventListener('DOMContentLoaded', () => {
         getState(markerType).icons.map(marker => markerToSnapshot(marker, markerType))
       ])
     );
+  }
+
+  function cloneSnapshot(snapshot) {
+    return JSON.parse(JSON.stringify(snapshot || {}));
+  }
+
+  function recordSignature(record) {
+    return `${record.name}__${record.lat}__${record.lng}`;
+  }
+
+  function recordCoordinateKey(record) {
+    return `${record.lat}__${record.lng}`;
+  }
+
+  function getChangedMarkerNames(markerTypesToCheck) {
+    const currentSnapshot = getStateSnapshot();
+    const changedNames = new Set();
+
+    markerTypesToCheck.forEach(markerType => {
+      const previousRecords = savedSnapshot[markerType] || [];
+      const currentRecords = currentSnapshot[markerType] || [];
+      const previousSignatures = new Set(previousRecords.map(recordSignature));
+      const currentSignatures = new Set(currentRecords.map(recordSignature));
+      const currentByCoordinates = new Map(
+        currentRecords.map(record => [recordCoordinateKey(record), record])
+      );
+
+      currentRecords.forEach(record => {
+        if (!previousSignatures.has(recordSignature(record))) {
+          changedNames.add(record.name);
+        }
+      });
+
+      previousRecords.forEach(record => {
+        if (currentSignatures.has(recordSignature(record))) return;
+        const renamedRecord = currentByCoordinates.get(recordCoordinateKey(record));
+        changedNames.add(renamedRecord ? renamedRecord.name : record.name);
+      });
+    });
+
+    return Array.from(changedNames).filter(Boolean);
   }
 
   function clearLayer(markerType) {
@@ -219,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       marker.on('contextmenu', () => {
+        if (!editMode) return;
         showMarkerModal({
           mode: 'edit',
           markerType,
@@ -369,6 +419,8 @@ document.addEventListener('DOMContentLoaded', () => {
         registerMarker(marker, markerType);
         pushHistory();
         markTypeDirty(markerType);
+        addMode = null;
+        syncAddButtons();
       }
     });
   }
@@ -442,12 +494,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isSaving) return;
     isSaving = true;
     try {
-      const typesToSave = dirtyTypes.size ? Array.from(dirtyTypes) : markerTypes;
+      const typesToSave = dirtyTypes.size ? Array.from(dirtyTypes) : [];
+      if (!typesToSave.length) {
+        alert('✅ Không có thay đổi marker để lưu');
+        return;
+      }
+
+      const changedMarkerNames = getChangedMarkerNames(typesToSave);
       for (const markerType of typesToSave) {
         await saveType(markerType);
       }
+      savedSnapshot = cloneSnapshot(getStateSnapshot());
       setDirty(false);
-      alert(`✅ Đã lưu marker: ${typesToSave.join(', ')}`);
+      const successLabel = changedMarkerNames.length
+        ? changedMarkerNames.join(', ')
+        : typesToSave.join(', ');
+      alert(`✅ Đã lưu marker: ${successLabel}`);
     } catch (error) {
       console.error(error);
       alert(`❌ Lưu marker thất bại: ${error.message}`);
@@ -474,17 +536,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!button) return;
     button.addEventListener('click', () => {
+      if (!editMode) return;
       addMode = addMode === markerType ? null : markerType;
-      markerTypes.forEach(type => {
-        if (!addButtons[type]) return;
-        addButtons[type].style.backgroundColor = addMode === type ? '#2e7d32' : '#3f51b5';
-      });
+      syncAddButtons();
     });
   });
 
   if (toggleEditBtn) {
     toggleEditBtn.addEventListener('click', () => {
       enableEditMode(!editMode);
+      if (!editMode) {
+        addMode = null;
+        syncAddButtons();
+      }
     });
   }
 
@@ -505,13 +569,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (pendingLoads.size === 0) {
       pushHistory();
+      savedSnapshot = cloneSnapshot(getStateSnapshot());
       setDirty(false);
       updateUndoRedoUI();
     }
   });
 
   map.on('click', event => {
-    if (!addMode) return;
+    if (!editMode || !addMode) return;
     createMarker(addMode, event.latlng);
   });
 

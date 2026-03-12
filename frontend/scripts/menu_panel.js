@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <button id="saveButton" onclick="saveConflictData()">Lưu Conflict Data</button>
       <div id="markerEditorTools" style="background: white; padding: 10px; margin-top: 5px;">
         <label>Marker Editor</label><br>
+        <button id="toggleMarkerEditBtn" type="button">Edit Mode: OFF</button>
         <button id="addPoliceBtn" type="button">+ Add Police</button>
         <button id="addBanditBtn" type="button">+ Add Bandit</button>
         <button id="addShowroomBtn" type="button">+ Add Showroom</button>
-        <button id="toggleMarkerEditBtn" type="button">Edit Mode: OFF</button>
         <button id="saveMarkersBtn" type="button">Save Marker to File</button>
       </div>
       <div id="layerToggles" style="background: white; padding: 10px;">

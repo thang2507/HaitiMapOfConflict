@@ -263,14 +263,17 @@ MARKER_FILES = {
     'police': {
         'filename': 'PolicePosition.json',
         'name_field': 'PoliceName',
+        'xlsx_filename': 'PolicePosition.xlsx',
     },
     'bandit': {
         'filename': 'BanditPosition.json',
         'name_field': 'BanditName',
+        'xlsx_filename': 'BanditPosition.xlsx',
     },
     'showroom': {
         'filename': 'ShowroomPosition.json',
         'name_field': 'ShowroomName',
+        'xlsx_filename': 'ShowroomPosition.xlsx',
     },
 }
 MARKER_LOCKS = {marker_type: threading.Lock() for marker_type in MARKER_FILES}
@@ -289,6 +292,20 @@ def _marker_type_to_filename(marker_type):
 
 def _marker_type_to_path(marker_type):
     filename = _marker_type_to_filename(marker_type)
+    if not filename:
+        return None
+    return os.path.join(UPLOAD_FOLDER, filename)
+
+
+def _marker_type_to_xlsx_filename(marker_type):
+    marker_config = MARKER_FILES.get(_normalize_marker_type(marker_type))
+    if not marker_config:
+        return None
+    return marker_config.get('xlsx_filename')
+
+
+def _marker_type_to_xlsx_path(marker_type):
+    filename = _marker_type_to_xlsx_filename(marker_type)
     if not filename:
         return None
     return os.path.join(UPLOAD_FOLDER, filename)
@@ -318,6 +335,50 @@ def _infer_marker_type_from_payload(data):
         if marker_config['name_field'] in properties:
             return marker_type
     return None
+
+
+def _marker_rows_from_geojson(marker_type, data):
+    marker_config = MARKER_FILES.get(_normalize_marker_type(marker_type))
+    if not marker_config:
+        raise ValueError(f'Invalid marker type: {marker_type}')
+
+    name_field = marker_config['name_field']
+    rows = []
+    for feature in data.get('features', []):
+        geometry = feature.get('geometry', {})
+        coordinates = geometry.get('coordinates', [])
+        if geometry.get('type') != 'Point' or len(coordinates) < 2:
+            continue
+
+        properties = feature.get('properties', {})
+        rows.append({
+            name_field: properties.get(name_field, ''),
+            'Longitude': coordinates[0],
+            'Latitude': coordinates[1],
+        })
+    return rows
+
+
+def _write_marker_xlsx(marker_type, data):
+    xlsx_path = _marker_type_to_xlsx_path(marker_type)
+    if not xlsx_path:
+        raise ValueError(f'No xlsx file configured for marker type: {marker_type}')
+
+    marker_config = MARKER_FILES[_normalize_marker_type(marker_type)]
+    name_field = marker_config['name_field']
+    columns = [name_field, 'Longitude', 'Latitude']
+
+    rows = _marker_rows_from_geojson(marker_type, data)
+    normalized_rows = []
+    for row in rows:
+        normalized_row = {column: '' for column in columns}
+        normalized_row.update(row)
+        normalized_rows.append(normalized_row)
+
+    df = pd.DataFrame(normalized_rows, columns=columns)
+    temp_path = f"{xlsx_path}.tmp.xlsx"
+    df.to_excel(temp_path, index=False)
+    os.replace(temp_path, xlsx_path)
 
 
 @app.route('/load_markers', methods=['GET'])
@@ -370,6 +431,7 @@ def save_markers():
         }), 400
 
     target_path = os.path.join(UPLOAD_FOLDER, filename)
+    xlsx_path = _marker_type_to_xlsx_path(marker_type)
     current_version = _file_version(target_path)
     client_version = (request.headers.get('X-Data-Version') or '').strip() or 'missing'
     if client_version != current_version:
@@ -395,11 +457,16 @@ def save_markers():
             timestp = datetime.now().strftime('%d%m%y_%H%M%S')
             backup_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.json")
             shutil.copyfile(target_path, backup_path)
+            if xlsx_path and os.path.exists(xlsx_path):
+                backup_xlsx_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.xlsx")
+                shutil.copyfile(xlsx_path, backup_xlsx_path)
 
         temp_path = f"{target_path}.tmp"
         with open(temp_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         os.replace(temp_path, target_path)
+        if xlsx_path:
+            _write_marker_xlsx(marker_type, data)
 
     response = jsonify({
         'status': 'ok',

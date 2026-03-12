@@ -6,12 +6,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.34003,
-          18.542375
+          -72.352417,
+          18.539836
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_President"
+        "BanditName": "HQ_IZO"
       }
     },
     {
@@ -19,12 +19,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.25085,
-          18.523388
+          -72.3513,
+          18.5242
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Học viện CS"
+        "BanditName": "HQ_TILAPLI"
       }
     },
     {
@@ -32,12 +32,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.18282,
-          18.3149
+          -72.329,
+          18.5567
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Prime Minister"
+        "BanditName": "HQ_BARBERCUE"
       }
     },
     {
@@ -45,12 +45,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.2870667,
-          18.5093
+          -72.335651,
+          18.551329
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Petion Ville"
+        "BanditName": "HQ_DEDE"
       }
     },
     {
@@ -58,12 +58,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.2864,
-          18.52937
+          -72.2387,
+          18.5312
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Delmas"
+        "BanditName": "HQ_VITILOM"
       }
     },
     {
@@ -71,12 +71,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.28553,
-          18.455145
+          -72.320553,
+          18.567596
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Kencoff"
+        "BanditName": "HQ_DJOUMA"
       }
     },
     {
@@ -84,12 +84,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.33499,
-          18.54391
+          -72.1674,
+          18.7271
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_PaP"
+        "BanditName": "Chốt_LANMÒ SAN JOU"
       }
     },
     {
@@ -97,12 +97,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.68929,
-          19.44722
+          -72.1674,
+          18.7271
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Gonaives"
+        "BanditName": "Chốt_JEFF GWO IWA"
       }
     },
     {
@@ -110,12 +110,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.48531,
-          19.48353
+          -72.068021,
+          18.532732
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Ennery"
+        "BanditName": "Chốt_1"
       }
     },
     {
@@ -123,12 +123,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.3370328,
-          19.3713028
+          -72.107764,
+          18.55183
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Saint Michel"
+        "BanditName": "Chốt_2"
       }
     },
     {
@@ -136,12 +136,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.62546210815373,
-          19.315361845627468
+          -72.148601,
+          18.562299
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_L'Estere"
+        "BanditName": "Chốt_3"
       }
     },
     {
@@ -149,12 +149,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.6101714,
-          19.1570085
+          -72.228709,
+          18.579394
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Pont Sonde"
+        "BanditName": "Chốt_4"
       }
     },
     {
@@ -162,12 +162,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.6757236,
-          19.667746
+          -72.222999,
+          18.600916
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Gros Morne"
+        "BanditName": "Chốt_5"
       }
     },
     {
@@ -175,12 +175,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.10377,
-          18.83528
+          -72.215652,
+          18.611528
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Mirebalais"
+        "BanditName": "Chốt_6"
       }
     },
     {
@@ -188,12 +188,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.00302465654359,
-          19.091969319826866
+          -72.180544,
+          18.66861
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Hinche_2508"
+        "BanditName": "Chốt_7"
       }
     },
     {
@@ -201,12 +201,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.4929,
-          18.4441
+          -72.157636,
+          18.691126
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Lascahobas"
+        "BanditName": "Chốt_8"
       }
     },
     {
@@ -214,12 +214,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.89108698515429,
-          19.092299366889147
+          -72.258914,
+          18.646082
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Thomassique"
+        "BanditName": "Chốt_9"
       }
     },
     {
@@ -227,12 +227,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.99005,
-          19.14948
+          -72.308966,
+          18.67171
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Hinche_2509"
+        "BanditName": "Chốt_10"
       }
     },
     {
@@ -240,12 +240,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.848725,
-          19.93218611111111
+          -72.336826,
+          18.690365
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Port de paix"
+        "BanditName": "Chốt_11"
       }
     },
     {
@@ -253,12 +253,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.83466944444444,
-          19.876444444444445
+          -72.353396,
+          18.694364
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Chansolm"
+        "BanditName": "Chốt_12"
       }
     },
     {
@@ -266,12 +266,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.79600277777777,
-          19.78392777777778
+          -72.374175,
+          18.720731
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Bassin bleu"
+        "BanditName": "Chốt_13"
       }
     },
     {
@@ -279,12 +279,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.83135833333333,
-          19.910880555555554
+          -72.316208,
+          18.613153
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Aubert"
+        "BanditName": "Chốt_14"
       }
     },
     {
@@ -292,12 +292,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.19023333333334,
-          19.854894444444447
+          -72.33529,
+          18.602808
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Jean Rabel"
+        "BanditName": "Chốt_15"
       }
     },
     {
@@ -305,12 +305,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.72383055555555,
-          19.93456388888889
+          -72.321245,
+          18.603294
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Saint Luois"
+        "BanditName": "Chốt_16"
       }
     },
     {
@@ -318,12 +318,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.83894166666666,
-          19.93958888888889
+          -72.324384,
+          18.596372
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Port De Paix"
+        "BanditName": "Chốt_17"
       }
     },
     {
@@ -331,12 +331,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.02229033655703,
-          19.18702011326263
+          -72.326091,
+          18.590869
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_1dsjfksdfmdm"
+        "BanditName": "Chốt_18"
       }
     },
     {
@@ -344,12 +344,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.160761,
-          18.3501
+          -72.313464,
+          18.579738
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Tabarre"
+        "BanditName": "Chốt_19"
       }
     },
     {
@@ -357,12 +357,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.172983,
-          18.342029
+          -72.329418,
+          18.580046
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_OUE358"
+        "BanditName": "Chốt_20"
       }
     },
     {
@@ -370,12 +370,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.18325,
-          18.341863
+          -72.331232,
+          18.575959
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Airport"
+        "BanditName": "Chốt_21"
       }
     },
     {
@@ -383,12 +383,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.151884,
-          18.335826
+          -72.33811,
+          18.565165
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_OUE105"
+        "BanditName": "Chốt_22"
       }
     },
     {
@@ -396,12 +396,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.51560191472166,
-          18.776969534536043
+          -72.293239,
+          18.596089
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Arcahaie"
+        "BanditName": "Chốt_23"
       }
     },
     {
@@ -409,12 +409,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.034175,
-          18.526573
+          -72.28263,
+          18.602355
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_7"
+        "BanditName": "Chốt_24"
       }
     },
     {
@@ -422,12 +422,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.883564,
-          18.490496
+          -72.278106,
+          18.61121
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_8"
+        "BanditName": "Chốt_25"
       }
     },
     {
@@ -435,12 +435,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.62337430090696,
-          18.50681106795423
+          -72.28837,
+          18.602492
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Leogan02"
+        "BanditName": "Chốt_26"
       }
     },
     {
@@ -448,12 +448,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.63154455798656,
-          18.51071559267328
+          -72.294549,
+          18.610075
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Leogan01"
+        "BanditName": "Chốt_27"
       }
     },
     {
@@ -461,12 +461,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.63449738558148,
-          18.45340511057785
+          -72.278965,
+          18.596682
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Leogan03"
+        "BanditName": "Chốt_28"
       }
     },
     {
@@ -474,12 +474,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.77094366109137,
-          18.42060664557023
+          -72.246011,
+          18.570187
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_GrandGoave"
+        "BanditName": "Chốt_29"
       }
     },
     {
@@ -487,12 +487,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.8565178660427,
-          18.43067506457531
+          -72.240987,
+          18.563061
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Petiguave02"
+        "BanditName": "Chốt_30"
       }
     },
     {
@@ -500,12 +500,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.8661702278381,
-          18.4322946273046
+          -72.234901,
+          18.556988
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Petiguave01"
+        "BanditName": "Chốt_31"
       }
     },
     {
@@ -513,12 +513,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.9380499540003,
-          18.41804642582026
+          -72.23659,
+          18.545774
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Miraguane02"
+        "BanditName": "Chốt_32"
       }
     },
     {
@@ -526,12 +526,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.08954213157317,
-          18.44538378807601
+          -72.243464,
+          18.553462
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Miraguane01"
+        "BanditName": "Chốt_33"
       }
     },
     {
@@ -539,12 +539,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.53835443422568,
-          18.23497977905505
+          -72.245267,
+          18.58195
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Jacmel"
+        "BanditName": "Chốt_34"
       }
     },
     {
@@ -552,12 +552,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.54299571236193,
-          18.53339808931823
+          -72.237688,
+          18.584915
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_UDMO_1"
+        "BanditName": "Chốt_35"
       }
     },
     {
@@ -565,12 +565,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.55243236511939,
-          18.52828024177635
+          -72.248705,
+          18.590636
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_UDMO_2"
+        "BanditName": "Chốt_36"
       }
     },
     {
@@ -578,12 +578,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.11460120095217,
-          19.372392968043403
+          -72.257323,
+          18.59602
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Pignon"
+        "BanditName": "Chốt_37"
       }
     },
     {
@@ -591,12 +591,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.207611,
-          19.747976
+          -72.246448,
+          18.602189
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Cap Haitien"
+        "BanditName": "Chốt_38"
       }
     },
     {
@@ -604,12 +604,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.403277,
-          19.704607
+          -72.5341,
+          18.540262
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Limbe"
+        "BanditName": "Chốt_103 Ghost"
       }
     },
     {
@@ -617,12 +617,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.196318,
-          19.764019
+          -72.513493,
+          18.545375
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_CSQG Cap Haitien"
+        "BanditName": "Chốt_Izo"
       }
     },
     {
@@ -630,12 +630,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.838231,
-          19.664705
+          -72.490935,
+          18.542137
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Fort Liberty"
+        "BanditName": "Chốt_Tigres"
       }
     },
     {
@@ -643,12 +643,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.200479,
-          19.438141
+          -72.351261,
+          18.524307
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Saint Raphael"
+        "BanditName": "Chốt_Tilapli"
       }
     },
     {
@@ -656,12 +656,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.95220934125975,
-          18.808816302393133
+          -72.364699,
+          18.521924
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_CEN093"
+        "BanditName": "Chốt_Krisla"
       }
     },
     {
@@ -669,12 +669,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.97324,
-          18.78603
+          -72.427681,
+          18.537626
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_CEN021"
+        "BanditName": "Chốt_Tibouba"
       }
     },
     {
@@ -682,12 +682,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.942153,
-          18.824929
+          -72.5787452,
+          19.3558657
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_CEN140"
+        "BanditName": "Chốt_ART"
       }
     },
     {
@@ -695,12 +695,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.93631,
-          18.829616
+          -72.592495,
+          19.3397037
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_CEN148"
+        "BanditName": "HQ_BigChief_2507"
       }
     },
     {
@@ -708,12 +708,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.080556,
-          18.847222
+          -72.092475,
+          18.833543
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Mirebalais02"
+        "BanditName": "Chốt_Lascahobas01"
       }
     },
     {
@@ -721,12 +721,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.038889,
-          18.901944
+          -72.074085,
+          18.823131
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_PeligreDam"
+        "BanditName": "Chốt_Lascahobas02"
       }
     },
     {
@@ -734,12 +734,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.014167,
-          18.912222
+          -72.064212,
+          18.816026
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Laurance"
+        "BanditName": "Chốt_Lascahobas03"
       }
     },
     {
@@ -747,12 +747,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.078237,
-          18.852917
+          -72.053375,
+          18.803236
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Jean_Dénis"
+        "BanditName": "Chốt_Lascahobas04"
       }
     },
     {
@@ -760,12 +760,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.079281,
-          18.848907
+          -72.044702,
+          18.796311
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Sarazin"
+        "BanditName": "Chốt_Lascahobas05"
       }
     },
     {
@@ -773,12 +773,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.072173,
-          18.905082
+          -72.034722,
+          18.796444
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_RN#3"
+        "BanditName": "Chốt_Lascahobas06"
       }
     },
     {
@@ -786,12 +786,25 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.30052855792563,
-          18.761341737097315
+          -72.017436,
+          18.797183
         ]
       },
       "properties": {
-        "PoliceName": "police_616"
+        "BanditName": "Chốt_Lascahobas07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.007594,
+          18.796979
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas08"
       }
     }
   ]

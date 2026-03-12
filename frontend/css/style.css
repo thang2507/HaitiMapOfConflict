@@ -58,6 +58,26 @@ html, body {
     background-color: #303f9f;
   }
 
+  #toggleMarkerEditBtn[data-edit-mode="on"] {
+    background-color: #d97706;
+  }
+
+  #toggleMarkerEditBtn[data-edit-mode="on"]:hover {
+    background-color: #b45309;
+  }
+
+  #addPoliceBtn[data-active="true"],
+  #addBanditBtn[data-active="true"],
+  #addShowroomBtn[data-active="true"] {
+    background-color: #00897b;
+  }
+
+  #addPoliceBtn[data-active="true"]:hover,
+  #addBanditBtn[data-active="true"]:hover,
+  #addShowroomBtn[data-active="true"]:hover {
+    background-color: #00695c;
+  }
+
   #legend {
     background-color: white;
     padding: 10px;

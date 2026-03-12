@@ -12,7 +12,7 @@
       },
       "properties": {
         "SiteName": "ART001",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -292,7 +292,7 @@
       },
       "properties": {
         "SiteName": "ART022",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -348,7 +348,7 @@
       },
       "properties": {
         "SiteName": "ART026",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -474,7 +474,7 @@
       },
       "properties": {
         "SiteName": "ART044",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -628,7 +628,7 @@
       },
       "properties": {
         "SiteName": "ART060",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -712,7 +712,7 @@
       },
       "properties": {
         "SiteName": "ART069",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -1146,7 +1146,7 @@
       },
       "properties": {
         "SiteName": "ART176",
-        "MainNode": "Mainnode"
+        "MainNode": "Access"
       }
     },
     {
@@ -1160,7 +1160,7 @@
       },
       "properties": {
         "SiteName": "ART178",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -1510,7 +1510,7 @@
       },
       "properties": {
         "SiteName": "ART248",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -1566,7 +1566,7 @@
       },
       "properties": {
         "SiteName": "ART252",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -1840,6 +1840,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.532416,
+          19.112168
+        ]
+      },
+      "properties": {
+        "SiteName": "ART284",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.669606,
           19.485341
         ]
@@ -1938,6 +1952,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.69475,
+          19.45926
+        ]
+      },
+      "properties": {
+        "SiteName": "ART295",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.701,
           19.4667
         ]
@@ -1958,6 +1986,20 @@
       },
       "properties": {
         "SiteName": "ART298",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.37133,
+          18.957099
+        ]
+      },
+      "properties": {
+        "SiteName": "ART302",
         "MainNode": "Access"
       }
     },
@@ -1994,12 +2036,152 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.675653,
+          19.435539
+        ]
+      },
+      "properties": {
+        "SiteName": "ART319",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.671598,
+          19.445425
+        ]
+      },
+      "properties": {
+        "SiteName": "ART321",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.70943,
+          19.469331
+        ]
+      },
+      "properties": {
+        "SiteName": "ART322",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.694026,
+          19.453874
+        ]
+      },
+      "properties": {
+        "SiteName": "ART323",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.660159,
           19.437909
         ]
       },
       "properties": {
         "SiteName": "ART324",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.684352,
+          19.452443
+        ]
+      },
+      "properties": {
+        "SiteName": "ART329",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.706082,
+          19.09611
+        ]
+      },
+      "properties": {
+        "SiteName": "ART338",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.696578,
+          19.106292
+        ]
+      },
+      "properties": {
+        "SiteName": "ART341",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.708008,
+          19.086415
+        ]
+      },
+      "properties": {
+        "SiteName": "ART343",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.671271,
+          19.449843
+        ]
+      },
+      "properties": {
+        "SiteName": "ART344",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.697167,
+          19.468602
+        ]
+      },
+      "properties": {
+        "SiteName": "ART346",
         "MainNode": "Access"
       }
     },
@@ -2042,6 +2224,118 @@
       },
       "properties": {
         "SiteName": "ART349",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.68415,
+          19.1244
+        ]
+      },
+      "properties": {
+        "SiteName": "ART352",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.66581,
+          19.440708
+        ]
+      },
+      "properties": {
+        "SiteName": "ART355",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.686952,
+          19.455897
+        ]
+      },
+      "properties": {
+        "SiteName": "ART357",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.680092,
+          19.451422
+        ]
+      },
+      "properties": {
+        "SiteName": "ART358",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.66563,
+          19.453598
+        ]
+      },
+      "properties": {
+        "SiteName": "ART365",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.66881,
+          19.46827
+        ]
+      },
+      "properties": {
+        "SiteName": "ART367",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.665199,
+          19.474356
+        ]
+      },
+      "properties": {
+        "SiteName": "ART368",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.664787,
+          19.484606
+        ]
+      },
+      "properties": {
+        "SiteName": "ART369",
         "MainNode": "Access"
       }
     },
@@ -2826,7 +3120,7 @@
       },
       "properties": {
         "SiteName": "CEN089",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -2966,7 +3260,7 @@
       },
       "properties": {
         "SiteName": "CEN107",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3148,7 +3442,7 @@
       },
       "properties": {
         "SiteName": "CEN143",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3246,7 +3540,7 @@
       },
       "properties": {
         "SiteName": "CEN152",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3324,12 +3618,194 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -71.747695,
+          18.871539
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN161",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.938599,
+          18.831568
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN180",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.099987,
           18.831269
         ]
       },
       "properties": {
         "SiteName": "CEN196",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.955913,
+          19.014424
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN199",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.01618,
+          19.140216
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN200",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.013759,
+          19.147598
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN201",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.011674,
+          19.142145
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN202",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.027659,
+          19.13558
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN203",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.009398,
+          19.156493
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN204",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.010601,
+          19.153771
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN208",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.00162,
+          19.140933
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN215",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.003646,
+          19.149163
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN216",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.022668,
+          19.142571
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN217",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.018157,
+          19.145627
+        ]
+      },
+      "properties": {
+        "SiteName": "CEN219",
         "MainNode": "Access"
       }
     },
@@ -3372,7 +3848,7 @@
       },
       "properties": {
         "SiteName": "GRA006",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3484,7 +3960,7 @@
       },
       "properties": {
         "SiteName": "GRA027",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -3666,7 +4142,7 @@
       },
       "properties": {
         "SiteName": "GRA059",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3694,7 +4170,7 @@
       },
       "properties": {
         "SiteName": "GRA065",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -3708,7 +4184,7 @@
       },
       "properties": {
         "SiteName": "GRA066",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -3758,12 +4234,166 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -74.300198,
+          18.580368
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA071",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.891889,
           18.55989
         ]
       },
       "properties": {
         "SiteName": "GRA074",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.458914,
+          18.42185
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA075",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.85285,
+          18.533812
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA077",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.890975,
+          18.475715
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA078",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.118125,
+          18.638606
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA086",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.116986,
+          18.648933
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA087",
+        "MainNode": "HubVibaBackbone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.114824,
+          18.639737
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA088",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.111608,
+          18.637008
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA089",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.117568,
+          18.642871
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA091",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1157,
+          18.64728
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA096",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.130534,
+          18.65178
+        ]
+      },
+      "properties": {
+        "SiteName": "GRA097",
         "MainNode": "Access"
       }
     },
@@ -4486,6 +5116,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -71.7161,
+          19.5443
+        ]
+      },
+      "properties": {
+        "SiteName": "NET117",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.7257,
+          19.5359
+        ]
+      },
+      "properties": {
+        "SiteName": "NET118",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.0227,
           19.6077
         ]
@@ -4528,13 +5186,97 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -73.077748,
-          18.435213
+          -71.717169,
+          19.551254
         ]
       },
       "properties": {
-        "SiteName": "NIP000",
-        "MainNode": "Mainnode"
+        "SiteName": "NET133",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.73655,
+          19.551118
+        ]
+      },
+      "properties": {
+        "SiteName": "NET136",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.72636,
+          19.55617
+        ]
+      },
+      "properties": {
+        "SiteName": "NET137",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.725179,
+          19.54126
+        ]
+      },
+      "properties": {
+        "SiteName": "NET142",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.71595,
+          19.539384
+        ]
+      },
+      "properties": {
+        "SiteName": "NET143",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.720048,
+          19.549202
+        ]
+      },
+      "properties": {
+        "SiteName": "NET150",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.726899,
+          19.560502
+        ]
+      },
+      "properties": {
+        "SiteName": "NET156",
+        "MainNode": "Access"
       }
     },
     {
@@ -5094,6 +5836,34 @@
       },
       "properties": {
         "SiteName": "NIP072",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.074113,
+          18.434772
+        ]
+      },
+      "properties": {
+        "SiteName": "NIP076",
+        "MainNode": "Mainnode"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.077099,
+          18.43516
+        ]
+      },
+      "properties": {
+        "SiteName": "NIP086",
         "MainNode": "Access"
       }
     },
@@ -6326,7 +7096,7 @@
       },
       "properties": {
         "SiteName": "NOR226",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -6614,6 +7384,188 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.216619,
+          19.721834
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR262",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.182507,
+          19.733709
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR264",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.203138,
+          19.732901
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR266",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.208299,
+          19.745364
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR269",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.21645,
+          19.728092
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR271",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.182983,
+          19.740203
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR303",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.200696,
+          19.759864
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR318",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.164496,
+          19.717933
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR326",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.194516,
+          19.736865
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR328",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.19578,
+          19.72586
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR330",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.21426,
+          19.736034
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR333",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.196334,
+          19.765286
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR344",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.22881,
+          19.78267
+        ]
+      },
+      "properties": {
+        "SiteName": "NOR358",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.82537,
           19.93879
         ]
@@ -6676,7 +7628,7 @@
       },
       "properties": {
         "SiteName": "NOT011",
-        "MainNode": "Mainnode"
+        "MainNode": "Access"
       }
     },
     {
@@ -6942,7 +7894,7 @@
       },
       "properties": {
         "SiteName": "NOT042",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -6998,7 +7950,7 @@
       },
       "properties": {
         "SiteName": "NOT077",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -7236,7 +8188,7 @@
       },
       "properties": {
         "SiteName": "NOT115",
-        "MainNode": "HubVibaBackbone"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -7468,6 +8420,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.582934,
+          19.866716
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT136",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.787146,
           19.83379
         ]
@@ -7482,12 +8448,40 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.851986,
+          20.040002
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT140",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.8328,
           19.9249
         ]
       },
       "properties": {
         "SiteName": "NOT142",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.830936,
+          19.933355
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT143",
         "MainNode": "Access"
       }
     },
@@ -7524,12 +8518,376 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.80971,
+          19.942409
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT147",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.818007,
+          19.945828
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT148",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.829826,
+          19.93682
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT149",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.834665,
+          19.939044
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT150",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.84222,
+          19.938356
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT152",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.209858,
           19.830181
         ]
       },
       "properties": {
         "SiteName": "NOT161",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.849244,
+          19.941923
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT179",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.824791,
+          19.944905
+        ]
+      },
+      "properties": {
+        "SiteName": "NOT180",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.300681,
+          18.513463
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1007",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.290314,
+          18.506448
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1009",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.632834,
+          18.511882
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1010",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.282058,
+          18.553376
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1018",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.620273,
+          18.505003
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1022",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.274592,
+          18.631138
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1027",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.279134,
+          18.526393
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1042",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.263317,
+          18.513773
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1044",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.859597,
+          18.435204
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1048",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.847642,
+          18.439529
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1049",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.769512,
+          18.423922
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1050",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.608716,
+          18.507499
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1052",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.243918,
+          18.616875
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1056",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.258394,
+          18.559557
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1066",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.265128,
+          18.504451
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1072",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2855,
+          18.5178
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1074",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.324486,
+          18.522561
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1075",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.28702,
+          18.515587
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1084",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.28702,
+          18.515587
+        ]
+      },
+      "properties": {
+        "SiteName": "OU1084",
         "MainNode": "Access"
       }
     },
@@ -8370,20 +9728,6 @@
       },
       "properties": {
         "SiteName": "OUE085",
-        "MainNode": "Access"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -72.267003,
-          18.647962
-        ]
-      },
-      "properties": {
-        "SiteName": "OUE0851",
         "MainNode": "Access"
       }
     },
@@ -9952,7 +11296,7 @@
       },
       "properties": {
         "SiteName": "OUE240",
-        "MainNode": "HubVibaBackbone"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -11044,7 +12388,7 @@
       },
       "properties": {
         "SiteName": "OUE360",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -12956,6 +14300,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.296214,
+          18.511494
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE697",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.335651,
           18.551329
         ]
@@ -13116,6 +14474,20 @@
       },
       "properties": {
         "SiteName": "OUE712",
+        "MainNode": "HubVibaBackbone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.68832,
+          18.43726
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE713",
         "MainNode": "Access"
       }
     },
@@ -13494,20 +14866,6 @@
       },
       "properties": {
         "SiteName": "OUE760",
-        "MainNode": "Access"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -71.832308,
-          18.304722
-        ]
-      },
-      "properties": {
-        "SiteName": "OUE764",
         "MainNode": "Access"
       }
     },
@@ -13936,6 +15294,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.285377,
+          18.512027
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE821",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.280715,
           18.456313
         ]
@@ -13978,6 +15350,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.300651,
+          18.497523
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE827",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.299059,
           18.512541
         ]
@@ -14012,6 +15398,20 @@
       },
       "properties": {
         "SiteName": "OUE830",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.31709,
+          18.53032
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE832",
         "MainNode": "Access"
       }
     },
@@ -14146,6 +15546,76 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.267003,
+          18.647962
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE851",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.330209,
+          18.576424
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE852",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.238811,
+          18.654285
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE860",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.247007,
+          18.67065
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE861",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.487735,
+          18.782481
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE865",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.305875,
           18.548444
         ]
@@ -14166,6 +15636,48 @@
       },
       "properties": {
         "SiteName": "OUE874",
+        "MainNode": "HubVibaBackbone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.268655,
+          18.575089
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE875",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.303392,
+          18.543472
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE876",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.274796,
+          18.521566
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE879",
         "MainNode": "Access"
       }
     },
@@ -14188,6 +15700,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.280681,
+          18.544705
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE881",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.290245,
           18.526462
         ]
@@ -14202,12 +15728,96 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.3309,
+          18.5259
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE884",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.289882,
+          18.567164
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE889",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.318421,
+          18.543663
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE892",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.295118,
+          18.51439
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE893",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.301785,
+          18.526662
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE896",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.623024,
           18.512378
         ]
       },
       "properties": {
         "SiteName": "OUE898",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.577398,
+          18.338609
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE903",
         "MainNode": "Access"
       }
     },
@@ -14244,12 +15854,208 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.61379,
+          18.4544
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE922",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.632145,
+          18.474819
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE923",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.862278,
+          18.420615
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE937",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.853087,
+          18.423199
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE938",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -72.277275,
           18.515731
         ]
       },
       "properties": {
         "SiteName": "OUE959",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.302717,
+          18.590819
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE971",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.213958,
+          18.587604
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE977",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.194689,
+          18.568223
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE979",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.277054,
+          18.523118
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE981",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.264808,
+          18.544047
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE982",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.271474,
+          18.519062
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE985",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.307861,
+          18.559634
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE993",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.325618,
+          18.540483
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE995",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.292851,
+          18.552447
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE996",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.326141,
+          18.534467
+        ]
+      },
+      "properties": {
+        "SiteName": "OUE997",
         "MainNode": "Access"
       }
     },
@@ -14306,7 +16112,7 @@
       },
       "properties": {
         "SiteName": "SET007",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -14404,7 +16210,7 @@
       },
       "properties": {
         "SiteName": "SET025",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -14460,7 +16266,7 @@
       },
       "properties": {
         "SiteName": "SET032",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -14488,7 +16294,7 @@
       },
       "properties": {
         "SiteName": "SET035",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -14818,6 +16624,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -72.52917,
+          18.23115
+        ]
+      },
+      "properties": {
+        "SiteName": "SET114",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.09496,
           18.29951
         ]
@@ -15104,7 +16924,7 @@
       },
       "properties": {
         "SiteName": "SUD028",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -15146,7 +16966,7 @@
       },
       "properties": {
         "SiteName": "SUD033",
-        "MainNode": "Access"
+        "MainNode": "Mainnode"
       }
     },
     {
@@ -15566,7 +17386,7 @@
       },
       "properties": {
         "SiteName": "SUD079",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -15776,7 +17596,7 @@
       },
       "properties": {
         "SiteName": "SUD112",
-        "MainNode": "Access"
+        "MainNode": "HubVibaBackbone"
       }
     },
     {
@@ -15896,6 +17716,34 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -73.896522,
+          18.122511
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD155",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.921647,
+          18.310838
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD156",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.726299,
           18.221912
         ]
@@ -15924,12 +17772,208 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -73.288219,
+          18.292851
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD164",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.576274,
+          18.252019
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD177",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.754686,
+          18.187148
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD189",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.787567,
+          18.22681
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD191",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.768657,
+          18.221746
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD192",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.753932,
+          18.2025
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD194",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.758122,
+          18.21229
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD197",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.838486,
+          18.153501
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD200",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.750243,
+          18.212536
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD210",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -73.758444,
           18.195456
         ]
       },
       "properties": {
         "SiteName": "SUD211",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.75197,
+          18.190142
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD218",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.761949,
+          18.204046
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD223",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.74395,
+          18.193269
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD224",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.753411,
+          18.195758
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD226",
+        "MainNode": "Access"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.746912,
+          18.203993
+        ]
+      },
+      "properties": {
+        "SiteName": "SUD227",
         "MainNode": "Access"
       }
     }

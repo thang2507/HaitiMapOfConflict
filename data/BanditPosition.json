@@ -32,8 +32,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.33072210258167,
-          18.55464641112939
+          -72.329,
+          18.5567
         ]
       },
       "properties": {
@@ -84,8 +84,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.14928021540591,
-          18.730479584664998
+          -72.1674,
+          18.7271
         ]
       },
       "properties": {
@@ -97,8 +97,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.17262169519027,
-          18.751301113690666
+          -72.1674,
+          18.7271
         ]
       },
       "properties": {
@@ -149,8 +149,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.2227489196047,
-          18.579545156933808
+          -72.228709,
+          18.579394
         ]
       },
       "properties": {
@@ -162,8 +162,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.22377763959959,
-          18.602975770558196
+          -72.222999,
+          18.600916
         ]
       },
       "properties": {
@@ -175,8 +175,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.21261994573977,
-          18.61859330660469
+          -72.215652,
+          18.611528
         ]
       },
       "properties": {
@@ -201,8 +201,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.12936940092874,
-          18.66379237174686
+          -72.157636,
+          18.691126
         ]
       },
       "properties": {
@@ -552,8 +552,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.23510794746105,
-          18.58833369171086
+          -72.237688,
+          18.584915
         ]
       },
       "properties": {
@@ -695,12 +695,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.592495,
-          19.3397037
+          -72.65086010815229,
+          19.375631782958358
         ]
       },
       "properties": {
-        "BanditName": "HQ_BigChief"
+        "BanditName": "HQ_BigChief_2507"
       }
     },
     {
@@ -708,12 +708,103 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.30034069964027,
-          18.542925210174317
+          -72.092475,
+          18.833543
         ]
       },
       "properties": {
-        "BanditName": "bandit_55"
+        "BanditName": "Chốt_Lascahobas01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.074085,
+          18.823131
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.064212,
+          18.816026
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.053375,
+          18.803236
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.044702,
+          18.796311
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.034722,
+          18.796444
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.017436,
+          18.797183
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.007594,
+          18.796979
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Lascahobas08"
       }
     }
   ]

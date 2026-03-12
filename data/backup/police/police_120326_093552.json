@@ -136,8 +136,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.62546210815373,
-          19.315361845627468
+          -72.608464,
+          19.305494
         ]
       },
       "properties": {
@@ -188,12 +188,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.00302465654359,
-          19.091969319826866
+          -72.01,
+          19.086
         ]
       },
       "properties": {
-        "PoliceName": "Đồn_Hinche_2508"
+        "PoliceName": "Đồn_Hinche"
       }
     },
     {
@@ -214,8 +214,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.89108698515429,
-          19.092299366889147
+          -71.83333,
+          19.08333
         ]
       },
       "properties": {
@@ -232,7 +232,7 @@
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Hinche_2509"
+        "PoliceName": "Chốt_Hinche"
       }
     },
     {
@@ -331,12 +331,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.02229033655703,
-          19.18702011326263
+          -72.022856,
+          19.190186
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_1dsjfksdfmdm"
+        "PoliceName": "Chốt_1"
       }
     },
     {
@@ -396,8 +396,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.51560191472166,
-          18.776969534536043
+          -72.514508,
+          18.771668
         ]
       },
       "properties": {
@@ -578,8 +578,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.11460120095217,
-          19.372392968043403
+          -72.114862,
+          19.336487
         ]
       },
       "properties": {
@@ -656,8 +656,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.95220934125975,
-          18.808816302393133
+          -71.9504930559815,
+          18.811417924727678
         ]
       },
       "properties": {
@@ -779,19 +779,6 @@
       },
       "properties": {
         "PoliceName": "Chốt_RN#3"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -72.30052855792563,
-          18.761341737097315
-        ]
-      },
-      "properties": {
-        "PoliceName": "police_616"
       }
     }
   ]
