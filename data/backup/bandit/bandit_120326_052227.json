@@ -1,0 +1,720 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.352417,
+          18.539836
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_IZO"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3513,
+          18.5242
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_TILAPLI"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.33072210258167,
+          18.55464641112939
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_BARBERCUE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.335651,
+          18.551329
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_DEDE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.2387,
+          18.5312
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_VITILOM"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.320553,
+          18.567596
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_DJOUMA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1674,
+          18.7271
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_LANMÒ SAN JOU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.1674,
+          18.7271
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_JEFF GWO IWA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.068021,
+          18.532732
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.107764,
+          18.55183
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.148601,
+          18.562299
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.228709,
+          18.579394
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.222999,
+          18.600916
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.215652,
+          18.611528
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.180544,
+          18.66861
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.157636,
+          18.691126
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.258914,
+          18.646082
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.308966,
+          18.67171
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.336826,
+          18.690365
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.353396,
+          18.694364
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.374175,
+          18.720731
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.316208,
+          18.613153
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.33529,
+          18.602808
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.321245,
+          18.603294
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.324384,
+          18.596372
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.326091,
+          18.590869
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.313464,
+          18.579738
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.329418,
+          18.580046
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.331232,
+          18.575959
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.33811,
+          18.565165
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.293239,
+          18.596089
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.28263,
+          18.602355
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.278106,
+          18.61121
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.28837,
+          18.602492
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.294549,
+          18.610075
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.278965,
+          18.596682
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.246011,
+          18.570187
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.240987,
+          18.563061
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.234901,
+          18.556988
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.23659,
+          18.545774
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.243464,
+          18.553462
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.245267,
+          18.58195
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.237688,
+          18.584915
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.248705,
+          18.590636
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.257323,
+          18.59602
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.246448,
+          18.602189
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5341,
+          18.540262
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_103 Ghost"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.513493,
+          18.545375
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Izo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.490935,
+          18.542137
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Tigres"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.351261,
+          18.524307
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Tilapli"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.364699,
+          18.521924
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Krisla"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.427681,
+          18.537626
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_Tibouba"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.5787452,
+          19.3558657
+        ]
+      },
+      "properties": {
+        "BanditName": "Chốt_ART"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.592495,
+          19.3397037
+        ]
+      },
+      "properties": {
+        "BanditName": "HQ_BigChief"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.31051207147567,
+          18.550738802279977
+        ]
+      },
+      "properties": {
+        "BanditName": "bandit_55"
+      }
+    }
+  ]
+}

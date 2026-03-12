@@ -1,0 +1,43 @@
+<div id="controls">
+    <h2>Conflict Map</h2>
+    <button id="toggleSiteButton" onclick="toggleSiteLabels()">Ẩn/Hiện mã trạm</button>
+    <button id="toggleLegendBtn" onclick="toggleSiteLabels()">Ẩn/Hiện chú thích</button>
+    <button id="toggleAllLabelsButton">Hiện PL/SR/BĐ</button>
+    <button id="saveButton" onclick="saveConflictData()">Lưu Conflict Data</button>
+  
+    <div class="file-input-group">
+      <label for="opacitySlider">Độ mờ bản đồ</label>
+      <input type="range" id="opacitySlider" min="0" max="1" step="0.05" value="0.6">
+    </div>    
+    
+    <div class="file-input-group">
+      <label for="conflictInput">Import Conflict</label>
+      <input type="file" id="conflictInput" accept=".xlsx" />
+    </div>
+  
+     <div class="file-input-group">
+      <label for="policeInput">Import Police</label>
+      <input type="file" id="policeInput" accept=".xlsx" />
+    </div>
+
+    <div class="file-input-group">
+      <label for="banditInput">Import Bandit</label>
+      <input type="file" id="banditInput" accept=".xlsx" />
+    </div>
+
+		<div class="file-input-group">
+      <label for="ShowroomInput">Import Showroom</label>
+      <input type="file" id="showroomInput" accept=".xlsx" />
+    </div>
+    
+    <div class="file-input-group">
+      <label for="siteInput">Import Site</label>
+      <input type="file" id="siteInput" accept=".xlsx" />
+    </div>
+
+    <div class="file-input-group">
+      <label for="hqInput">Import HQ</label>
+      <input type="file" id="hqInput" accept=".xlsx" />
+    </div>
+    </div>
+    

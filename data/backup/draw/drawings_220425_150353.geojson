@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "color": "#e74c3c",
+        "radius": 39666.45218403757
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.65252919782529,
+          19.518609103626037
+        ]
+      }
+    }
+  ]
+}

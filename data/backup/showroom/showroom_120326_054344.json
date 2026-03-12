@@ -1,0 +1,83 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.734068,
+          19.54866
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_OUANAMINTHE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.838985,
+          19.666831
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_FORT LIBERTE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.022723,
+          19.617639
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_TRUEDUNORD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.404546,
+          19.702337
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_LIMBE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.19887,
+          19.75956
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_CAP HAITIEN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.199294,
+          19.439849
+        ]
+      },
+      "properties": {
+        "ShowroomName": "NOR_SR_SAINT RAPHAEL"
+      }
+    }
+  ]
+}

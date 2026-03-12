@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Haiti Map Of Conflict v3.2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <link rel="stylesheet" href="frontend/css/style.css">
+</head>
+
+<body>
+<div id="app">
+<div id="map"></div>
+</div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+  <script src="https://unpkg.com/leaflet-arrowheads@1.0.6/dist/leaflet-arrowheads.min.js"></script>
+  <script>
+  var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© 2025 Natcom',
+  maxZoom: 19
+  });
+
+  var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '© Esri',
+  maxZoom: 22
+  });
+  var map = L.map('map', {
+  zoomControl: false,  // ← Ẩn nút zoom mặc định
+  layers: [streets] // mặc định hiển thị OSM
+  });
+// Thêm điều khiển chọn lớp
+  var baseMaps = {
+  "Street Map": streets,
+  "Vệ tinh": satellite
+  };
+L.control.layers(baseMaps).addTo(map);
+</script>
+
+
+<script src="frontend/scripts/menu_panel.js?v=20260312b"></script>
+<script src="frontend/scripts/f_loadconflictmap.js?v=20260312b"></script>
+<script src="frontend/scripts/upload_conflict.js?v=20260312b"></script>
+<script src="frontend/scripts/save_conflictdata.js?v=20260312b"></script>
+<script src="frontend/scripts/site_position.js?v=20260312b"></script>
+<script src="frontend/scripts/marker_editor.js?v=20260312b"></script>
+<script src="frontend/scripts/x_Position.js?v=20260312b"></script>
+<script src="frontend/scripts/copyright.js?v=20260312b"></script>
+<script src="frontend/scripts/legend.js?v=20260312b"></script>
+<script src="frontend/scripts/draw.js?v=20260312b"></script>
+<script src="frontend/scripts/upload_all_inputs.js?v=20260312b"></script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.693988,
+          19.448384
+        ]
+      },
+      "properties": {
+        "HQName": "ART_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.005153,
+          19.143186
+        ]
+      },
+      "properties": {
+        "HQName": "CEN_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.3231,
+          18.536058
+        ]
+      },
+      "properties": {
+        "HQName": "Natcom_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.198835,
+          19.759655
+        ]
+      },
+      "properties": {
+        "HQName": "NOR_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.84729,
+          19.93088
+        ]
+      },
+      "properties": {
+        "HQName": "NOT_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.277276,
+          18.515731
+        ]
+      },
+      "properties": {
+        "HQName": "OUE1_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.628413,
+          18.507715
+        ]
+      },
+      "properties": {
+        "HQName": "OUE2_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.267276,
+          18.630819
+        ]
+      },
+      "properties": {
+        "HQName": "OUE3_HQ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.751429,
+          18.197694
+        ]
+      },
+      "properties": {
+        "HQName": "SUD_HQ"
+      }
+    }
+  ]
+}

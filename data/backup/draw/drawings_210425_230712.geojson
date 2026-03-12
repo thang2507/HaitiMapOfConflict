@@ -1,0 +1,134 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.498549,
+              18.813146
+            ],
+            [
+              -76.322297,
+              19.000188
+            ],
+            [
+              -75.245933,
+              19.880576
+            ],
+            [
+              -75.498549,
+              18.813146
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "color": "#ec8e81"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.877846,
+              18.78681
+            ],
+            [
+              -73.877846,
+              18.979075
+            ],
+            [
+              -73.542856,
+              18.979075
+            ],
+            [
+              -73.542856,
+              18.78681
+            ],
+            [
+              -73.877846,
+              18.78681
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "color": "#2ecc71"
+      },
+      "type": "Feature"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "color": "#ec8e81",
+        "type": "marker"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.894467,
+          19.23888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "color": "#ec8e81"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.202519,
+            20.375599
+          ],
+          [
+            -74.158586,
+            19.77725
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "color": "#ec8e81",
+        "text": "âd"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -76.443113,
+              18.563432
+            ],
+            [
+              -76.377213,
+              17.853938
+            ],
+            [
+              -74.916434,
+              17.655185
+            ],
+            [
+              -74.707751,
+              18.667524
+            ],
+            [
+              -76.443113,
+              18.563432
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
