@@ -109,7 +109,7 @@ def convert_xlsx_to_json(xlsx_path, json_path, name_field='SiteName', additional
         geometry = {"type": "Point", "coordinates": [row['Longitude'], row['Latitude']]}
         props = {name_field: row.get(name_field, '')}
         
-        # Thêm các trường bổ sung vào properties
+        # Thêm các trường bổ sung vào properties s
         for field in additional_fields:
             # Lấy giá trị của trường bổ sung, giữ nguyên giá trị dạng văn bản
             props[field] = str(row.get(field, '')).strip()
