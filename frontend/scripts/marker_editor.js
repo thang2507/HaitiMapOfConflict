@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let dirty = false;
   let isSaving = false;
   let savedSnapshot = {};
+  let autosaveFailures = 0;
   const dirtyTypes = new Set();
 
   const history = [];
@@ -83,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setDirty(value) {
     dirty = value;
-    if (dirtyLabel) dirtyLabel.textContent = dirty ? 'Unsaved changes' : 'No changes';
+    if (dirtyLabel) {
+      dirtyLabel.textContent = dirty ? 'Unsaved changes' : 'No changes';
+      dirtyLabel.style.color = dirty ? '#b71c1c' : '#666';
+      dirtyLabel.style.fontWeight = dirty ? '700' : '400';
+    }
     if (!value) dirtyTypes.clear();
   }
 
@@ -455,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     };
 
-    const response = await fetch(`/save_markers?type=${markerType}`, {
+    const response = await fetchWithTimeout(`/save_markers?type=${markerType}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -463,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ...getMarkerKeyHeader()
       },
       body: JSON.stringify(payload)
-    });
+    }, 10000);
 
     if (response.status === 401) {
       const key = prompt('Nhập Marker API Key:');
@@ -504,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (const markerType of typesToSave) {
         await saveType(markerType);
       }
+      autosaveFailures = 0;
       savedSnapshot = cloneSnapshot(getStateSnapshot());
       setDirty(false);
       const successLabel = changedMarkerNames.length
@@ -511,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : typesToSave.join(', ');
       alert(`✅ Đã lưu marker: ${successLabel}`);
     } catch (error) {
+      autosaveFailures += 1;
       console.error(error);
       alert(`❌ Lưu marker thất bại: ${error.message}`);
     } finally {
@@ -581,8 +588,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   setInterval(() => {
-    if (dirty && !isSaving) saveAll();
-  }, 15000);
+    if (dirty && !isSaving && autosaveFailures < 3) saveAll();
+  }, 5000);
 
   enableEditMode(false);
   updateUndoRedoUI();

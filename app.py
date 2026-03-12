@@ -23,6 +23,7 @@ UPLOAD_FOLDER = os.path.join(BASE_DIR, 'data')
 BACKUP_FOLDER = os.path.join(UPLOAD_FOLDER, 'backup', 'conflict_template')
 os.makedirs(BACKUP_FOLDER, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+CONFLICT_LOCK = threading.Lock()
 
 
 @app.after_request
@@ -51,24 +52,29 @@ def require_marker_api_key(view_func):
     return wrapped
 
 def convert_conflict_to_geojson(xlsx_path):
-    # Đọc dữ liệu conflict từ Excel
     df = pd.read_excel(xlsx_path)
+    required_columns = {'region_name', 'conflict_level'}
+    missing_columns = required_columns - set(df.columns)
+    if missing_columns:
+        raise ValueError(f"Missing columns in conflict template: {sorted(missing_columns)}")
+
     conflict_map = dict(zip(df['region_name'], df['conflict_level']))
-    # Mở bản gốc GeoJSON nếu có
     base_geojson_path = os.path.join(UPLOAD_FOLDER, 'Haiti_conflict_map.geojson')
     if not os.path.exists(base_geojson_path):
-        logger.warning("Base conflict GeoJSON not found at %s", base_geojson_path)
-        return
+        raise FileNotFoundError(f"Base conflict GeoJSON not found at {base_geojson_path}")
+
     with open(base_geojson_path, 'r', encoding='utf-8') as f:
         geo = geojson.load(f)
-    # Cập nhật conflict_level theo region_name ↔ ADM3_EN
+
     for feature in geo['features']:
         shape_name = feature['properties'].get('ADM3_EN')
         if shape_name in conflict_map:
             feature['properties']['conflict_level'] = conflict_map[shape_name]
-    # Ghi lại GeoJSON đã cập nhật
-    with open(base_geojson_path, 'w', encoding='utf-8') as f:
+
+    temp_path = f"{base_geojson_path}.tmp"
+    with open(temp_path, 'w', encoding='utf-8') as f:
         geojson.dump(geo, f, indent=2)
+    os.replace(temp_path, base_geojson_path)
     logger.info("Updated conflict GeoJSON from %s with %d matching regions", xlsx_path, len(conflict_map))
 
 def backup_conflict(xlsx_path):
@@ -79,17 +85,26 @@ def backup_conflict(xlsx_path):
     backup_path = os.path.join(BACKUP_FOLDER, f"conflict_template_{timestp}.xlsx")
     shutil.copyfile(xlsx_path, backup_path)
 
+
+def _conflict_geojson_path():
+    return os.path.join(UPLOAD_FOLDER, 'Haiti_conflict_map.geojson')
+
 @app.route('/upload_conflict', methods=['POST'])
 @require_marker_api_key
 def upload_conflict():
-    file = request.files.get('file')
-    if file and file.filename.endswith('.xlsx'):
+    try:
+        file = request.files.get('file')
+        if not file or not file.filename.endswith('.xlsx'):
+            return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+
         xlsx_path = os.path.join(UPLOAD_FOLDER, 'conflict_template.xlsx')
         backup_conflict(xlsx_path)
         file.save(xlsx_path)
         convert_conflict_to_geojson(xlsx_path)
         return jsonify({'status': 'ok'})
-    return 'Invalid file', 400
+    except Exception as exc:
+        logger.exception("upload_conflict failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 def convert_xlsx_to_json(xlsx_path, json_path, name_field='SiteName', additional_fields=None):
@@ -101,6 +116,13 @@ def convert_xlsx_to_json(xlsx_path, json_path, name_field='SiteName', additional
     :param additional_fields: Danh sách các trường bổ sung cần thêm vào properties.
     """
     df = pd.read_excel(xlsx_path)
+    required_columns = {name_field, 'Longitude', 'Latitude'}
+    missing_columns = required_columns - set(df.columns)
+    if missing_columns:
+        raise ValueError(f"Missing columns in {os.path.basename(xlsx_path)}: {sorted(missing_columns)}")
+
+    df['Longitude'] = pd.to_numeric(df['Longitude'], errors='coerce')
+    df['Latitude'] = pd.to_numeric(df['Latitude'], errors='coerce')
     features = []
     additional_fields = additional_fields or []  # Nếu không có trường bổ sung, sử dụng danh sách rỗng
     for _, row in df.iterrows():
@@ -148,49 +170,68 @@ def process_site_position():
 @app.route('/upload_site', methods=['POST'])
 @require_marker_api_key
 def upload_site():
-    file = request.files.get('file')
-    if file and file.filename.endswith('.xlsx'):
+    try:
+        file = request.files.get('file')
+        if not file or not file.filename.endswith('.xlsx'):
+            return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+
         xlsx_path = os.path.join(UPLOAD_FOLDER, 'SitePosition.xlsx')
         file.save(xlsx_path)
         return process_site_position()
-        
-    return 'Invalid file', 400
+    except Exception as exc:
+        logger.exception("upload_site failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @app.route('/upload_police', methods=['POST'])
 @require_marker_api_key
 def upload_police():
-    file = request.files.get('file')
-    if file and file.filename.endswith('.xlsx'):
+    try:
+        file = request.files.get('file')
+        if not file or not file.filename.endswith('.xlsx'):
+            return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+
         xlsx_path = os.path.join(UPLOAD_FOLDER, 'PolicePosition.xlsx')
         file.save(xlsx_path)
         convert_xlsx_to_json(xlsx_path, os.path.join(UPLOAD_FOLDER, 'PolicePosition.json'), 'PoliceName')
         return jsonify({'status': 'ok'})
-    return 'Invalid file', 400
+    except Exception as exc:
+        logger.exception("upload_police failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @app.route('/upload_showroom', methods=['POST'])
 @require_marker_api_key
 def upload_showroom():
-    file = request.files.get('file')
-    if file and file.filename.endswith('.xlsx'):
+    try:
+        file = request.files.get('file')
+        if not file or not file.filename.endswith('.xlsx'):
+            return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+
         xlsx_path = os.path.join(UPLOAD_FOLDER, 'ShowroomPosition.xlsx')
         file.save(xlsx_path)
         convert_xlsx_to_json(xlsx_path, os.path.join(UPLOAD_FOLDER, 'ShowroomPosition.json'), 'ShowroomName')
         return jsonify({'status': 'ok'})
-    return 'Invalid file', 400
+    except Exception as exc:
+        logger.exception("upload_showroom failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @app.route('/upload_bandit', methods=['POST'])
 @require_marker_api_key
 def upload_bandit():
-    file = request.files.get('file')
-    if file and file.filename.endswith('.xlsx'):
+    try:
+        file = request.files.get('file')
+        if not file or not file.filename.endswith('.xlsx'):
+            return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+
         xlsx_path = os.path.join(UPLOAD_FOLDER, 'BanditPosition.xlsx')
         file.save(xlsx_path)
         convert_xlsx_to_json(xlsx_path, os.path.join(UPLOAD_FOLDER, 'BanditPosition.json'), 'BanditName')
         return jsonify({'status': 'ok'})
-    return 'Invalid file', 400
+    except Exception as exc:
+        logger.exception("upload_bandit failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 @app.route('/upload_hq', methods=['POST'])
 @require_marker_api_key
@@ -221,31 +262,65 @@ def upload_hq():
 @app.route('/save_conflict_data', methods=['POST'])
 @require_marker_api_key
 def save_conflict_data():
-    data = request.get_json()
-    if not data:
-        return 'No data provided', 400
-    geojson_path = os.path.join(UPLOAD_FOLDER, 'Haiti_conflict_map.geojson')
-    if not os.path.exists(geojson_path):
-        return 'GeoJSON file not found', 404
-    with open(geojson_path, 'r', encoding='utf-8') as f:
-        geo = geojson.load(f)
-    # Cập nhật conflict_level
-    level_map = {item['name']: item['conflict_level'] for item in data}
-    xlsx_path = os.path.join(UPLOAD_FOLDER, 'conflict_template.xlsx')
-    if not os.path.exists(xlsx_path):
-        return 'Conflict template file not found', 404
-    backup_conflict(xlsx_path)
-    df = pd.read_excel(xlsx_path)
-    for feature in geo['features']:
-        name = feature['properties'].get('ADM3_EN')
-        if name in level_map:
-            feature['properties']['conflict_level'] = level_map[name]
-            df.loc[df['region_name'] == name, 'conflict_level'] = level_map[name]
-    with open(geojson_path, 'w', encoding='utf-8') as f:
-        geojson.dump(geo, f)
-    df.to_excel(xlsx_path, index=False)
-    logger.info("Saved conflict data update with %d entries", len(level_map))
-    return jsonify({'status': 'updated'})
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({'status': 'error', 'message': 'No data provided'}), 400
+
+        geojson_path = _conflict_geojson_path()
+        if not os.path.exists(geojson_path):
+            return jsonify({'status': 'error', 'message': 'GeoJSON file not found'}), 404
+
+        client_version = (request.headers.get('X-Data-Version') or '').strip() or 'missing'
+        current_version = _file_version(geojson_path)
+        if client_version != current_version:
+            return jsonify({
+                'status': 'error',
+                'message': 'Conflict data has changed on the server. Reload and try again.',
+                'current_version': current_version
+            }), 409
+
+        xlsx_path = os.path.join(UPLOAD_FOLDER, 'conflict_template.xlsx')
+        if not os.path.exists(xlsx_path):
+            return jsonify({'status': 'error', 'message': 'Conflict template file not found'}), 404
+
+        with CONFLICT_LOCK:
+            current_version = _file_version(geojson_path)
+            if client_version != current_version:
+                return jsonify({
+                    'status': 'error',
+                    'message': 'Conflict data has changed on the server. Reload and try again.',
+                    'current_version': current_version
+                }), 409
+
+            with open(geojson_path, 'r', encoding='utf-8') as f:
+                geo = geojson.load(f)
+
+            level_map = {item['name']: item['conflict_level'] for item in data}
+            backup_conflict(xlsx_path)
+            df = pd.read_excel(xlsx_path)
+            for feature in geo['features']:
+                name = feature['properties'].get('ADM3_EN')
+                if name in level_map:
+                    feature['properties']['conflict_level'] = level_map[name]
+                    df.loc[df['region_name'] == name, 'conflict_level'] = level_map[name]
+
+            geojson_temp_path = f"{geojson_path}.tmp"
+            xlsx_temp_path = f"{xlsx_path}.tmp.xlsx"
+            with open(geojson_temp_path, 'w', encoding='utf-8') as f:
+                geojson.dump(geo, f)
+            df.to_excel(xlsx_temp_path, index=False)
+            os.replace(geojson_temp_path, geojson_path)
+            os.replace(xlsx_temp_path, xlsx_path)
+
+        latest_version = _file_version(geojson_path)
+        logger.info("Saved conflict data update with %d entries", len(level_map))
+        response = jsonify({'status': 'updated', 'version': latest_version})
+        response.headers['X-Data-Version'] = latest_version
+        return response
+    except Exception as exc:
+        logger.exception("save_conflict_data failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 # Serve static files
 @app.route('/<filename>.json')
@@ -257,7 +332,9 @@ def serve_json(filename):
 
 @app.route('/Haiti_conflict_map.geojson')
 def serve_geojson():
-    return send_from_directory(UPLOAD_FOLDER, 'Haiti_conflict_map.geojson')
+    response = send_from_directory(UPLOAD_FOLDER, 'Haiti_conflict_map.geojson')
+    response.headers['X-Data-Version'] = _file_version(_conflict_geojson_path())
+    return response
 
 MARKER_FILES = {
     'police': {
@@ -376,9 +453,23 @@ def _write_marker_xlsx(marker_type, data):
         normalized_rows.append(normalized_row)
 
     df = pd.DataFrame(normalized_rows, columns=columns)
-    temp_path = f"{xlsx_path}.tmp.xlsx"
-    df.to_excel(temp_path, index=False)
-    os.replace(temp_path, xlsx_path)
+    return df
+
+
+def _write_marker_bundle(marker_type, data, json_path, xlsx_path):
+    json_temp_path = f"{json_path}.tmp"
+    with open(json_temp_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    xlsx_temp_path = None
+    if xlsx_path:
+        df = _write_marker_xlsx(marker_type, data)
+        xlsx_temp_path = f"{xlsx_path}.tmp.xlsx"
+        df.to_excel(xlsx_temp_path, index=False)
+
+    os.replace(json_temp_path, json_path)
+    if xlsx_temp_path:
+        os.replace(xlsx_temp_path, xlsx_path)
 
 
 @app.route('/load_markers', methods=['GET'])
@@ -413,39 +504,28 @@ def _check_marker_api_key():
 @app.route('/save_markers', methods=['POST'])
 @require_marker_api_key
 def save_markers():
-    marker_type = _normalize_marker_type(request.args.get('type'))
+    try:
+        marker_type = _normalize_marker_type(request.args.get('type'))
 
-    data = request.get_json()
-    if not data or data.get('type') != 'FeatureCollection' or 'features' not in data:
-        return jsonify({'status': 'error', 'message': 'Invalid GeoJSON payload'}), 400
+        data = request.get_json()
+        if not data or data.get('type') != 'FeatureCollection' or 'features' not in data:
+            return jsonify({'status': 'error', 'message': 'Invalid GeoJSON payload'}), 400
 
-    filename = _marker_type_to_filename(marker_type)
-    if not filename:
-        marker_type = _infer_marker_type_from_payload(data)
         filename = _marker_type_to_filename(marker_type)
+        if not filename:
+            marker_type = _infer_marker_type_from_payload(data)
+            filename = _marker_type_to_filename(marker_type)
 
-    if not filename:
-        return jsonify({
-            'status': 'error',
-            'message': f'Invalid marker type: {request.args.get("type", "")}'
-        }), 400
+        if not filename:
+            return jsonify({
+                'status': 'error',
+                'message': f'Invalid marker type: {request.args.get("type", "")}'
+            }), 400
 
-    target_path = os.path.join(UPLOAD_FOLDER, filename)
-    xlsx_path = _marker_type_to_xlsx_path(marker_type)
-    current_version = _file_version(target_path)
-    client_version = (request.headers.get('X-Data-Version') or '').strip() or 'missing'
-    if client_version != current_version:
-        return jsonify({
-            'status': 'error',
-            'message': 'Marker data has changed on the server. Reload and try again.',
-            'current_version': current_version
-        }), 409
-
-    backup_folder = os.path.join(UPLOAD_FOLDER, 'backup', marker_type)
-    os.makedirs(backup_folder, exist_ok=True)
-
-    with MARKER_LOCKS[marker_type]:
+        target_path = os.path.join(UPLOAD_FOLDER, filename)
+        xlsx_path = _marker_type_to_xlsx_path(marker_type)
         current_version = _file_version(target_path)
+        client_version = (request.headers.get('X-Data-Version') or '').strip() or 'missing'
         if client_version != current_version:
             return jsonify({
                 'status': 'error',
@@ -453,28 +533,38 @@ def save_markers():
                 'current_version': current_version
             }), 409
 
-        if os.path.exists(target_path):
-            timestp = datetime.now().strftime('%d%m%y_%H%M%S')
-            backup_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.json")
-            shutil.copyfile(target_path, backup_path)
-            if xlsx_path and os.path.exists(xlsx_path):
-                backup_xlsx_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.xlsx")
-                shutil.copyfile(xlsx_path, backup_xlsx_path)
+        backup_folder = os.path.join(UPLOAD_FOLDER, 'backup', marker_type)
+        os.makedirs(backup_folder, exist_ok=True)
 
-        temp_path = f"{target_path}.tmp"
-        with open(temp_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        os.replace(temp_path, target_path)
-        if xlsx_path:
-            _write_marker_xlsx(marker_type, data)
+        with MARKER_LOCKS[marker_type]:
+            current_version = _file_version(target_path)
+            if client_version != current_version:
+                return jsonify({
+                    'status': 'error',
+                    'message': 'Marker data has changed on the server. Reload and try again.',
+                    'current_version': current_version
+                }), 409
 
-    response = jsonify({
-        'status': 'ok',
-        'message': f'{filename} updated',
-        'version': _file_version(target_path)
-    })
-    response.headers['X-Data-Version'] = _file_version(target_path)
-    return response
+            if os.path.exists(target_path):
+                timestp = datetime.now().strftime('%d%m%y_%H%M%S')
+                backup_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.json")
+                shutil.copyfile(target_path, backup_path)
+                if xlsx_path and os.path.exists(xlsx_path):
+                    backup_xlsx_path = os.path.join(backup_folder, f"{marker_type}_{timestp}.xlsx")
+                    shutil.copyfile(xlsx_path, backup_xlsx_path)
+
+            _write_marker_bundle(marker_type, data, target_path, xlsx_path)
+
+        response = jsonify({
+            'status': 'ok',
+            'message': f'{filename} updated',
+            'version': _file_version(target_path)
+        })
+        response.headers['X-Data-Version'] = _file_version(target_path)
+        return response
+    except Exception as exc:
+        logger.exception("save_markers failed")
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 if __name__ == '__main__':

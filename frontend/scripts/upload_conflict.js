@@ -8,16 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const file = event.target.files[0];
     if (!file) return;
 
-    const password = prompt("Nhập mật khẩu để tải lên:");
-    if (password !== '2707') {
-      alert("❌ Sai mật khẩu!");
-      return;
-    }
-
     const formData = new FormData();
     formData.append('file', file);
 
-    fetch('/upload_conflict', {
+    fetchWithMarkerAuth('/upload_conflict', {
       method: 'POST',
       body: formData
     })
@@ -26,9 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('✅ Đã lưu trạng thái lên Server!');
           loadConflictMap();
         } else {
-          alert('❌ Lỗi khi lưu Conflict Template!');
+          return res.text().then(text => {
+            throw new Error(text || 'Lỗi khi lưu Conflict Template!');
+          });
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => alert(`❌ ${err.message}`))
+      .finally(() => {
+        input.value = '';
+      });
   });
 });

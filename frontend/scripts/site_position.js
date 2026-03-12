@@ -4,8 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let siteIconMarkers = [];
   let siteLabelMarkers = [];
 
-  fetch('/SitePosition.json')
-    .then(res => res.json())
+  fetchWithTimeout('/SitePosition.json', {}, 10000)
+    .then(res => {
+      if (!res.ok) throw new Error(`/SitePosition.json failed: ${res.status}`);
+      return res.json();
+    })
     .then(siteData => {
       siteData.features.forEach(f => {
         const [lng, lat] = f.geometry.coordinates;

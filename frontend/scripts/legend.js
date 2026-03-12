@@ -1,5 +1,5 @@
 // Thêm chú thích (legend) vào bản đồ
-const legend = L.control({ position: 'bottomright' });
+const legend = L.control({ position: 'bottomleft' });
 
 legend.onAdd = function (map) {
   const div = L.DomUtil.create('div', 'info legend');

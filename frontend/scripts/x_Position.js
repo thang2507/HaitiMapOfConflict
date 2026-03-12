@@ -74,8 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    fetch(config.url)
+    fetchWithTimeout(config.url, {}, 10000)
       .then(async res => {
+        if (!res.ok) {
+          throw new Error(`${config.url} failed: ${res.status}`);
+        }
         window.markerDataVersions = window.markerDataVersions || {};
         window.markerDataVersions[markerType] = res.headers.get('X-Data-Version') || 'missing';
         return res.json();
@@ -113,9 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         syncVisibility();
-        dispatchLoaded(markerType);
       })
-      .catch(err => console.error(`Không tải được dữ liệu ${markerType}:`, err));
+      .catch(err => console.error(`Không tải được dữ liệu ${markerType}:`, err))
+      .finally(() => {
+        dispatchLoaded(markerType);
+      });
 
     iconToggle?.addEventListener('change', syncVisibility);
     labelToggle?.addEventListener('change', syncVisibility);
@@ -128,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hqIcons = [];
   const hqLabels = [];
 
-  fetch('/HQ_Position.json')
+  fetchWithTimeout('/HQ_Position.json', {}, 10000)
     .then(res => res.json())
     .then(siteData => {
       siteData.features.forEach(feature => {

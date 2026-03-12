@@ -91,7 +91,7 @@ html, body {
     z-index: 1000;
   }
   .info.legend {
-    display: none; /* Ẩn chú thích mặc định */
+    display: block;
   }
   #toggleSidebarBtn {
   position: absolute;

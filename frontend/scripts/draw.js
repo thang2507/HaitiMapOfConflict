@@ -13,7 +13,7 @@ function getCurrentOpacity() {
     return slider ? parseFloat(slider.value) : 0.8;
 }
 
-function saveDrawings() {
+async function saveDrawings() {
     const geojson = {
         type: "FeatureCollection",
         features: drawnItems.getLayers().map(layer => {
@@ -42,11 +42,15 @@ function saveDrawings() {
         })
     };
 
-    fetch('/save_drawings', {
+    const response = await fetchWithMarkerAuth('/save_drawings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(geojson)
     });
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || 'Không lưu được drawings');
+    }
 }
 
 // === Color Picker Control ===
@@ -129,14 +133,30 @@ map.on(L.Draw.Event.CREATED, function (e) {
         });
     }
 
-    saveDrawings();
+    saveDrawings().catch(err => {
+        console.error(err);
+        alert(`❌ ${err.message}`);
+    });
 });
 
-map.on(L.Draw.Event.EDITED, saveDrawings);
-map.on(L.Draw.Event.DELETED, saveDrawings);
+map.on(L.Draw.Event.EDITED, () => {
+    saveDrawings().catch(err => {
+        console.error(err);
+        alert(`❌ ${err.message}`);
+    });
+});
+map.on(L.Draw.Event.DELETED, () => {
+    saveDrawings().catch(err => {
+        console.error(err);
+        alert(`❌ ${err.message}`);
+    });
+});
 
-fetch('/load_drawings')
-    .then(res => res.json())
+fetchWithTimeout('/load_drawings', {}, 10000)
+    .then(res => {
+        if (!res.ok) throw new Error(`/load_drawings failed: ${res.status}`);
+        return res.json();
+    })
     .then(data => {
         const geojsonLayer = L.geoJSON(data, {
             style: function (feature) {

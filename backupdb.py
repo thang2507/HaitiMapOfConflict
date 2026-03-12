@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request, send_file
-from io import BytesIO
+from flask import Blueprint, jsonify, request, send_file, after_this_request
 import os
 import logging
+import tempfile
 import zipfile
 from datetime import datetime
 
@@ -25,28 +25,37 @@ def backup_data():
         return jsonify({'status': 'error', 'message': 'Unauthorized'}), 401
 
     try:
-        memory_file = BytesIO()
+        temp_file = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
+        temp_file.close()
+        temp_path = temp_file.name
 
-        with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
+        with zipfile.ZipFile(temp_path, 'w', zipfile.ZIP_DEFLATED) as zf:
             for filename in os.listdir(DATA_DIR):
                 full_path = os.path.join(DATA_DIR, filename)
                 if os.path.isfile(full_path):
                     zf.write(full_path, arcname=filename)
-
-        memory_file.seek(0)
 
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         filename = f"backup_data_{timestamp}.zip"
 
         logger.info("Created backup archive %s", filename)
 
+        @after_this_request
+        def cleanup_temp_file(response):
+            try:
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+            except OSError:
+                logger.warning("Failed to remove temp backup file %s", temp_path)
+            return response
+
         return send_file(
-        memory_file,
-        mimetype='application/zip',
-        as_attachment=True,
-        download_name=filename  # ✅ đúng chuẩn Flask >= 2.0
+            temp_path,
+            mimetype='application/zip',
+            as_attachment=True,
+            download_name=filename
         )
 
-    except Exception as e:
+    except Exception:
         logger.exception("Backup data request failed")
-        return "Internal Server Error", 500
+        return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500

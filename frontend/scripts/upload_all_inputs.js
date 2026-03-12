@@ -16,24 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const file = event.target.files[0];
       if (!file) return;
 
-      const password = prompt("Nhập mật khẩu để tải lên:");
-      if (password !== '2707') {
-        alert("❌ Sai mật khẩu!");
-        return;
-      }
-
       const formData = new FormData();
       formData.append('file', file);
 
-      fetch(endpoint, {
+      fetchWithMarkerAuth(endpoint, {
         method: 'POST',
         body: formData
       })
         .then(res => {
-          if (res.ok) alert(`✅ Đã lưu ${id}`);
-          else alert(`❌ Lỗi khi lưu ${id}`);
+          if (res.ok) {
+            alert(`✅ Đã lưu ${id}`);
+          } else {
+            return res.text().then(text => {
+              throw new Error(text || `Lỗi khi lưu ${id}`);
+            });
+          }
         })
-        .catch(err => console.error(err));
+        .catch(err => alert(`❌ ${err.message}`))
+        .finally(() => {
+          input.value = '';
+        });
     });
   });
 });

@@ -102,8 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.getElementById('backupDBBtn')?.addEventListener('click', () => {
-    fetch('/backup_data')
+    fetchWithMarkerAuth('/backup_data', {}, { timeoutMs: 30000 })
       .then(response => {
+        if (!response.ok) {
+          return response.text().then(text => {
+            throw new Error(text || 'Backup thất bại');
+          });
+        }
         const disposition = response.headers.get('Content-Disposition');
         const match = /filename="?(.+)"?/.exec(disposition);
         const filename = match?.[1] || 'backup_data.zip';

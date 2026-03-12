@@ -1,4 +1,19 @@
 let conflictLayer;
+let activeConflictMenu = null;
+
+function closeConflictMenu() {
+  if (activeConflictMenu && document.body.contains(activeConflictMenu)) {
+    document.body.removeChild(activeConflictMenu);
+  }
+  activeConflictMenu = null;
+}
+
+document.addEventListener('contextmenu', event => {
+  event.preventDefault();
+});
+document.addEventListener('click', () => {
+  closeConflictMenu();
+});
     function getColor(conflictLevel) {
       switch (conflictLevel) {
         case 'level0': return '#2ecc71';
@@ -18,8 +33,12 @@ let conflictLayer;
     }
 
   function loadConflictMap() {
-  fetch('/Haiti_conflict_map.geojson')
-    .then(res => res.json())
+  fetchWithTimeout('/Haiti_conflict_map.geojson', {}, 10000)
+    .then(res => {
+      if (!res.ok) throw new Error(`/Haiti_conflict_map.geojson failed: ${res.status}`);
+      window.conflictDataVersion = res.headers.get('X-Data-Version') || 'missing';
+      return res.json();
+    })
     .then(data => {
       if (conflictLayer) map.removeLayer(conflictLayer);
       conflictLayer = L.geoJSON(data, {
@@ -34,6 +53,11 @@ let conflictLayer;
           layer.on('mouseout', () => map.closePopup());
           layer.on('click', () => layer.bindPopup(`<strong>${name}</strong>`).openPopup());
           layer.on('contextmenu', e => {
+            if (e.originalEvent) {
+              e.originalEvent.preventDefault();
+              e.originalEvent.stopPropagation();
+            }
+            closeConflictMenu();
             const menu = document.createElement('div');
             menu.style.position = 'absolute';
             menu.style.left = `${e.originalEvent.pageX}px`;
@@ -50,31 +74,55 @@ let conflictLayer;
               option.style.padding = '5px';
               option.style.background = getColor(level);
               option.style.color = 'black';
-              option.addEventListener('click', () => {
-                const password = prompt('Nhập mật khẩu để thay đổi:');
-                if (password === '2808') {
+              option.addEventListener('click', async () => {
+                const previousLevel = feature.properties.conflict_level;
+                try {
                   feature.properties.conflict_level = level;
                   layer.setStyle({
                     fillColor: getColor(level),
                     fillOpacity: level === 'empty' ? 0 : 0.6
                   });
+                  const response = await fetchWithMarkerAuth('/save_conflict_data', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'X-Data-Version': window.conflictDataVersion || 'missing'
+                    },
+                    body: JSON.stringify([{
+                      name: feature.properties.ADM3_EN,
+                      conflict_level: level
+                    }])
+                  });
+                  if (!response.ok) {
+                    if (response.status === 409) {
+                      const conflict = await response.json();
+                      window.conflictDataVersion = conflict.current_version || 'missing';
+                      throw new Error('Dữ liệu conflict đã bị người khác thay đổi. App sẽ tải lại.');
+                    }
+                    const text = await response.text();
+                    throw new Error(text || 'Không lưu được conflict level');
+                  }
+                  const result = await response.json();
+                  window.conflictDataVersion = result.version || response.headers.get('X-Data-Version') || 'missing';
                   alert('✅ Thay đổi thành công!');
-                } else {
-                  alert('❌ Mật khẩu không đúng!');
+                } catch (error) {
+                  feature.properties.conflict_level = previousLevel;
+                  layer.setStyle({
+                    fillColor: getColor(previousLevel),
+                    fillOpacity: previousLevel === 'empty' ? 0 : 0.6
+                  });
+                  if (error.message.includes('App sẽ tải lại')) {
+                    loadConflictMap();
+                  }
+                  alert(`❌ ${error.message}`);
                 }
-                document.body.removeChild(menu);
+                closeConflictMenu();
               });
               menu.appendChild(option);
             });
 
-            document.addEventListener('click', function removeMenu() {
-              if (document.body.contains(menu)) {
-                document.body.removeChild(menu);
-                document.removeEventListener('click', removeMenu);
-              }
-            });
-
             document.body.appendChild(menu);
+            activeConflictMenu = menu;
           });
         }
       }).addTo(map);
