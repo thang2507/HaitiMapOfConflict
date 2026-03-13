@@ -695,12 +695,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.65086010815229,
-          19.375631782958358
+          -72.592495,
+          19.3397037
         ]
       },
       "properties": {
-        "BanditName": "HQ_BigChief_2507"
+        "BanditName": "HQ_BigChief"
       }
     },
     {

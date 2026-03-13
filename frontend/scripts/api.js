@@ -116,6 +116,7 @@ function showAppAlert(message) {
   document.body.appendChild(backdrop);
 
   if (isSuccessAlertMessage(message)) {
+    title.style.display = 'none';
     actions.style.display = 'none';
     window.setTimeout(close, 3000);
   }

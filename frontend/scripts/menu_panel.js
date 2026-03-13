@@ -35,29 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
         <label for="opacitySlider">Độ mờ bản đồ</label>
         <input type="range" id="opacitySlider" min="0" max="1" step="0.05" value="0.6">
       </div>
-      <div class="file-input-group">
-        <label for="conflictInput">Import Conflict</label>
-        <input type="file" id="conflictInput" accept=".xlsx" />
-      </div>
-      <div class="file-input-group">
-        <label for="policeInput">Import Police</label>
-        <input type="file" id="policeInput" accept=".xlsx" />
-      </div>
-      <div class="file-input-group">
-        <label for="banditInput">Import Bandit</label>
-        <input type="file" id="banditInput" accept=".xlsx" />
-      </div>
-      <div class="file-input-group">
-        <label for="showroomInput">Import Showroom</label>
-        <input type="file" id="showroomInput" accept=".xlsx" />
-      </div>
-      <div class="file-input-group">
-        <label for="siteInput">Import Site</label>
-        <input type="file" id="siteInput" accept=".xlsx" />
-      </div>
-      <div class="file-input-group">
-        <label for="hqInput">Import HQ</label>
-        <input type="file" id="hqInput" accept=".xlsx" />
+      <label class="toggle-imports-control" for="toggleImportMenu">
+        <input type="checkbox" id="toggleImportMenu">
+        Hiện menu import
+      </label>
+      <div id="importMenuSection">
+        <div class="file-input-group">
+          <label for="conflictInput">Import Conflict</label>
+          <input type="file" id="conflictInput" accept=".xlsx" />
+        </div>
+        <div class="file-input-group">
+          <label for="policeInput">Import Police</label>
+          <input type="file" id="policeInput" accept=".xlsx" />
+        </div>
+        <div class="file-input-group">
+          <label for="banditInput">Import Bandit</label>
+          <input type="file" id="banditInput" accept=".xlsx" />
+        </div>
+        <div class="file-input-group">
+          <label for="showroomInput">Import Showroom</label>
+          <input type="file" id="showroomInput" accept=".xlsx" />
+        </div>
+        <div class="file-input-group">
+          <label for="siteInput">Import Site</label>
+          <input type="file" id="siteInput" accept=".xlsx" />
+        </div>
+        <div class="file-input-group">
+          <label for="hqInput">Import HQ</label>
+          <input type="file" id="hqInput" accept=".xlsx" />
+        </div>
       </div>
       <button id="backupDBBtn">BackupDB</button>
     </div>
@@ -73,6 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
         conflictLayer.setStyle({ fillOpacity: newOpacity });
       }
     });
+  }
+
+  const toggleImportMenu = document.getElementById('toggleImportMenu');
+  const importMenuSection = document.getElementById('importMenuSection');
+  if (toggleImportMenu && importMenuSection) {
+    const syncImportMenuVisibility = () => {
+      importMenuSection.hidden = !toggleImportMenu.checked;
+    };
+    toggleImportMenu.addEventListener('change', syncImportMenuVisibility);
+    syncImportMenuVisibility();
   }
 
 

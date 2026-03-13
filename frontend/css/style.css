@@ -33,6 +33,23 @@ html, body {
   .file-input-group {
     display: flex;
     flex-direction: column;
+    width: 100%;
+  }
+
+  #importMenuSection[hidden] {
+    display: none;
+  }
+
+  .toggle-imports-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .toggle-imports-control input[type="checkbox"] {
+    margin: 0;
   }
 
   label {
@@ -43,6 +60,11 @@ html, body {
   input[type="file"], button {
     padding: 5px;
     font-size: 14px;
+  }
+
+  input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   button {

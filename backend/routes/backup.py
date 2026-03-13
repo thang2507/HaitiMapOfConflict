@@ -1,27 +1,22 @@
-from flask import Blueprint, jsonify, request, send_file, after_this_request
-import os
 import logging
+import os
 import tempfile
 import zipfile
 from datetime import datetime
 
+from flask import Blueprint, after_this_request, jsonify, send_file
+
+from backend.auth import check_marker_api_key
+from backend.config import DATA_DIR
+
+
 backup_api = Blueprint('backup_api', __name__)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, 'data')
 logger = logging.getLogger(__name__)
 
 
-def _check_marker_api_key():
-    expected_key = os.getenv('MARKER_API_KEY', '').strip()
-    if not expected_key:
-        return True
-
-    provided_key = request.headers.get('X-Marker-Key', '').strip()
-    return provided_key == expected_key
-
 @backup_api.route('/backup_data')
 def backup_data():
-    if not _check_marker_api_key():
+    if not check_marker_api_key():
         return jsonify({'status': 'error', 'message': 'Unauthorized'}), 401
 
     try:
@@ -35,10 +30,8 @@ def backup_data():
                 if os.path.isfile(full_path):
                     zf.write(full_path, arcname=filename)
 
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = f"backup_data_{timestamp}.zip"
-
-        logger.info("Created backup archive %s", filename)
+        filename = f"backup_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"
+        logger.info('Created backup archive %s', filename)
 
         @after_this_request
         def cleanup_temp_file(response):
@@ -46,16 +39,15 @@ def backup_data():
                 if os.path.exists(temp_path):
                     os.remove(temp_path)
             except OSError:
-                logger.warning("Failed to remove temp backup file %s", temp_path)
+                logger.warning('Failed to remove temp backup file %s', temp_path)
             return response
 
         return send_file(
             temp_path,
             mimetype='application/zip',
             as_attachment=True,
-            download_name=filename
+            download_name=filename,
         )
-
     except Exception:
-        logger.exception("Backup data request failed")
+        logger.exception('Backup data request failed')
         return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500
