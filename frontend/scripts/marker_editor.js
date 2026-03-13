@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const app = window.HaitiMapApp || (window.HaitiMapApp = {});
+  const sharedGetMarkerKeyHeader = app.services?.getMarkerKeyHeader;
   const MARKER_CONFIG = {
     police: {
       label: 'Police',
@@ -76,11 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const redoBtn = document.getElementById('redoMarkerBtn');
   const dirtyLabel = document.getElementById('markerDirtyState');
   window.markerDataVersions = window.markerDataVersions || {};
-
-  function getMarkerKeyHeader() {
-    const key = sessionStorage.getItem('marker_api_key') || '';
-    return key ? { 'X-Marker-Key': key } : {};
-  }
 
   function setDirty(value) {
     dirty = value;
@@ -461,14 +458,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const response = await fetchWithTimeout(`/save_markers?type=${markerType}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Data-Version': window.markerDataVersions[markerType] || 'missing',
-        ...getMarkerKeyHeader()
-      },
-      body: JSON.stringify(payload)
-    }, 10000);
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Data-Version': window.markerDataVersions[markerType] || 'missing',
+          ...(typeof sharedGetMarkerKeyHeader === 'function' ? sharedGetMarkerKeyHeader() : {})
+        },
+        body: JSON.stringify(payload)
+      }, 10000);
 
     if (response.status === 401) {
       const key = prompt('Nhập Marker API Key:');

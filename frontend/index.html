@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
   <link rel="stylesheet" href="frontend/css/style.css">
+  <link rel="stylesheet" href="frontend/css/sidebar.css">
+  <link rel="stylesheet" href="frontend/css/legend.css">
+  <link rel="stylesheet" href="frontend/css/marker-modal.css">
 </head>
 
 <body>
@@ -40,8 +43,12 @@ L.control.layers(baseMaps).addTo(map);
 </script>
 
 
-<script src="frontend/scripts/api.js?v=20260312c"></script>
-<script src="frontend/scripts/menu_panel.js?v=20260312b"></script>
+<script src="frontend/scripts/core/app_state.js?v=20260313a"></script>
+<script src="frontend/scripts/core/events.js?v=20260313a"></script>
+<script src="frontend/scripts/api.js?v=20260313a"></script>
+<script src="frontend/scripts/ui/sidebar_template.js?v=20260313a"></script>
+<script src="frontend/scripts/ui/sidebar_bindings.js?v=20260313a"></script>
+<script src="frontend/scripts/menu_panel.js?v=20260313a"></script>
 <script src="frontend/scripts/f_loadconflictmap.js?v=20260312b"></script>
 <script src="frontend/scripts/upload_conflict.js?v=20260312b"></script>
 <script src="frontend/scripts/save_conflictdata.js?v=20260312b"></script>

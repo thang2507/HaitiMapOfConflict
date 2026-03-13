@@ -1,137 +1,19 @@
 html, body {
-    margin: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
-
-  #app {
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
-
-  #controls {
-    width: 200px;
-    background-color: #f8f8f8;
-    padding: 15px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    overflow-y: auto;
-  }
-
-  #map {
-    flex-grow: 1;
-  }
-
-  h2 {
-    margin-top: 0;
-  }
-
-  .file-input-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #importMenuSection[hidden] {
-    display: none;
-  }
-
-  .toggle-imports-control {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-
-  .toggle-imports-control input[type="checkbox"] {
-    margin: 0;
-  }
-
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  input[type="file"], button {
-    padding: 5px;
-    font-size: 14px;
-  }
-
-  input[type="file"] {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  button {
-    cursor: pointer;
-    background-color: #3f51b5;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-  }
-
-  button:hover {
-    background-color: #303f9f;
-  }
-
-  #toggleMarkerEditBtn[data-edit-mode="on"] {
-    background-color: #d97706;
-  }
-
-  #toggleMarkerEditBtn[data-edit-mode="on"]:hover {
-    background-color: #b45309;
-  }
-
-  #addPoliceBtn[data-active="true"],
-  #addBanditBtn[data-active="true"],
-  #addShowroomBtn[data-active="true"] {
-    background-color: #00897b;
-  }
-
-  #addPoliceBtn[data-active="true"]:hover,
-  #addBanditBtn[data-active="true"]:hover,
-  #addShowroomBtn[data-active="true"]:hover {
-    background-color: #00695c;
-  }
-
-  #legend {
-    background-color: white;
-    padding: 10px;
-    line-height: 1.4;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 12px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  .info.legend {
-    display: block;
-  }
-  #toggleSidebarBtn {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 999;
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
 }
 
-#toggleSidebarBtn:hover {
-  background-color: #303f9f;
+#app {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
+
+#map {
+  flex-grow: 1;
+}
+
 .leaflet-draw-toolbar {
   z-index: 1000;
 }
@@ -145,7 +27,7 @@ html, body {
   color: black;
   font-size: 14px;
   text-shadow: 0 0 2px white;
-  pointer-events: none; /* Ngăn chặn hover/click vào text */
+  pointer-events: none;
 }
 
 .leaflet-arrowheads path {
@@ -163,49 +45,4 @@ html, body {
   border-radius: 2px !important;
   border: 1px solid #333 !important;
   background-color: white !important;
-}
-
-.marker-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 3000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.marker-modal {
-  width: 320px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
-}
-
-.marker-modal h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-}
-
-.marker-modal input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 8px;
-  margin-top: 6px;
-}
-
-.marker-modal-actions {
-  margin-top: 12px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.marker-modal-actions .danger {
-  background-color: #b71c1c;
-}
-
-.marker-modal-actions .success {
-  background-color: #2e7d32;
 }

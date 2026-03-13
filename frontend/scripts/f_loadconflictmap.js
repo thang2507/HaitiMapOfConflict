@@ -1,5 +1,25 @@
-let conflictLayer;
+var haitiMapApp = window.HaitiMapApp || (window.HaitiMapApp = {});
+haitiMapApp.state = haitiMapApp.state || {};
+
+let conflictLayer = haitiMapApp.state.conflictLayer || null;
+window.conflictLayer = conflictLayer;
 let activeConflictMenu = null;
+
+function getMapOpacity() {
+  const slider = document.getElementById('opacitySlider');
+  return slider ? parseFloat(slider.value) : 0.6;
+}
+
+function applyConflictOpacity(opacity = getMapOpacity()) {
+  if (!conflictLayer) return;
+
+  conflictLayer.setStyle(featureLayer => {
+    const level = featureLayer?.feature?.properties?.conflict_level;
+    return {
+      fillOpacity: level === 'empty' ? 0 : opacity
+    };
+  });
+}
 
 function closeConflictMenu() {
   if (activeConflictMenu && document.body.contains(activeConflictMenu)) {
@@ -46,7 +66,7 @@ document.addEventListener('click', () => {
           color: '#333',
           weight: 1,
           fillColor: getColor(f.properties.conflict_level),
-          fillOpacity: f.properties.conflict_level === 'empty' ? 0 : 0.6
+          fillOpacity: f.properties.conflict_level === 'empty' ? 0 : getMapOpacity()
         }),
         onEachFeature: (feature, layer) => {
           const name = feature.properties.ADM3_EN || "Không rõ";
@@ -126,30 +146,20 @@ document.addEventListener('click', () => {
           });
         }
       }).addTo(map);
+      haitiMapApp.state.conflictLayer = conflictLayer;
+      window.conflictLayer = conflictLayer;
 
       map.fitBounds(conflictLayer.getBounds());
     })
     .catch(err => console.error('Không tải được bản đồ xung đột:', err));
 }
 
-    loadConflictMap(); // Load khi trang mở
+window.loadConflictMap = loadConflictMap;
+haitiMapApp.actions = haitiMapApp.actions || {};
+haitiMapApp.actions.loadConflictMap = loadConflictMap;
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const slider = document.getElementById('opacitySlider');
-      if (slider) {
-        slider.addEventListener('input', function () {
-          const newOpacity = parseFloat(this.value);
-          if (conflictLayer) {
-            conflictLayer.setStyle(f => {
-              const level = f?.feature?.properties?.conflict_level;
-              return {
-                fillOpacity: level === 'empty' ? 0 : newOpacity
-              };
-            });
-            
-          }
-        });
-      } else {
-        console.warn("⚠️ Không tìm thấy phần tử #opacitySlider");
-      }
-    });
+loadConflictMap(); // Load khi trang mở
+
+haitiMapApp.events.on('mapOpacityChange', event => {
+  applyConflictOpacity(event.detail?.opacity);
+});

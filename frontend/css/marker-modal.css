@@ -1,0 +1,63 @@
+.marker-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marker-modal {
+  width: 320px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.marker-modal h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.marker-modal input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-top: 6px;
+}
+
+.marker-modal button {
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s;
+  min-height: 36px;
+  font-weight: 600;
+  box-shadow: 0 8px 14px rgba(37, 99, 235, 0.16);
+}
+
+.marker-modal button:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  transform: translateY(-1px);
+}
+
+.marker-modal-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.marker-modal-actions .danger {
+  background-color: #b71c1c;
+}
+
+.marker-modal-actions .success {
+  background-color: #2e7d32;
+}

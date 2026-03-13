@@ -1,3 +1,6 @@
+var haitiMapApp = window.HaitiMapApp || (window.HaitiMapApp = {});
+haitiMapApp.services = haitiMapApp.services || {};
+
 function getMarkerKeyHeader() {
   const key = sessionStorage.getItem('marker_api_key') || '';
   return key ? { 'X-Marker-Key': key } : {};
@@ -154,3 +157,11 @@ async function fetchWithMarkerAuth(url, options = {}, settings = {}) {
     headers: { ...(options.headers || {}), ...getMarkerKeyHeader() }
   }, timeoutMs);
 }
+
+haitiMapApp.services.getMarkerKeyHeader = getMarkerKeyHeader;
+haitiMapApp.services.fetchWithTimeout = fetchWithTimeout;
+haitiMapApp.services.fetchWithMarkerAuth = fetchWithMarkerAuth;
+
+window.getMarkerKeyHeader = getMarkerKeyHeader;
+window.fetchWithTimeout = fetchWithTimeout;
+window.fetchWithMarkerAuth = fetchWithMarkerAuth;

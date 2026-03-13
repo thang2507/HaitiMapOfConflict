@@ -1,11 +1,13 @@
+var haitiMapApp = window.HaitiMapApp || (window.HaitiMapApp = {});
 
 // Lưu trạng thái Conflict Level
 function saveConflictData() {
   const updatedData = [];
-  if (!conflictLayer) return;
+  const layer = haitiMapApp.state?.conflictLayer || window.conflictLayer || null;
+  if (!layer) return;
 
-  conflictLayer.eachLayer(layer => {
-    const props = layer.feature.properties;
+  layer.eachLayer(featureLayer => {
+    const props = featureLayer.feature.properties;
     updatedData.push({
       name: props.ADM3_EN,
       conflict_level: props.conflict_level
@@ -38,9 +40,13 @@ function saveConflictData() {
       }
     })
     .catch(err => {
-      if (err.message.includes('App sẽ tải lại') && typeof loadConflictMap === 'function') {
-        loadConflictMap();
+      if (err.message.includes('App sẽ tải lại') && typeof haitiMapApp.actions?.loadConflictMap === 'function') {
+        haitiMapApp.actions.loadConflictMap();
       }
       alert(`❌ ${err.message}`);
     });
 }
+
+haitiMapApp.actions = haitiMapApp.actions || {};
+haitiMapApp.actions.saveConflictData = saveConflictData;
+window.saveConflictData = saveConflictData;

@@ -1,3 +1,5 @@
+var haitiMapApp = window.HaitiMapApp || (window.HaitiMapApp = {});
+
 // === Khởi tạo các layer ===
 const drawnItems = new L.FeatureGroup();
 const arrowLayerGroup = L.layerGroup();
@@ -212,7 +214,6 @@ fetchWithTimeout('/load_drawings', {}, 10000)
 
 document.addEventListener("DOMContentLoaded", function () {
     const checkbox = document.getElementById('toggleDrawnItems');
-    const opacitySlider = document.getElementById('opacitySlider');
     if (checkbox) {
         checkbox.addEventListener('change', function () {
             if (this.checked) {
@@ -222,22 +223,21 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+});
 
-    if (opacitySlider) {
-        opacitySlider.addEventListener('input', function () {
-            const newOpacity = parseFloat(this.value);
-            drawnItems.eachLayer(layer => {
-    if (layer.setStyle) {
+haitiMapApp.events.on('mapOpacityChange', event => {
+    const newOpacity = event.detail?.opacity;
+    if (typeof newOpacity !== 'number') return;
+
+    drawnItems.eachLayer(layer => {
+        if (!layer.setStyle) return;
+
         const level = layer.feature?.properties?.conflict_level;
-        const style = {
+        layer.setStyle({
             fillOpacity: level === 'empty' ? 0 : newOpacity,
             opacity: level === 'empty' ? 0 : newOpacity
-        };
-        layer.setStyle(style);
-    }
-});
         });
-    }
+    });
 });
 
 map.on('draw:deletestart', function () {
