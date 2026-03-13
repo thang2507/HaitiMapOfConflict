@@ -1,0 +1,136 @@
+HƯỚNG DẪN SỬ DỤNG APP HAITI MAP OF CONFLICT
+
+1. Mục đích của app
+- App dùng để hiển thị bản đồ xung đột tại Haiti.
+- App cho phép xem các lớp dữ liệu marker như Site, Police, Bandit, Showroom, HQ và Draw.
+- App cho phép sửa mức độ xung đột trên bản đồ, import dữ liệu từ file Excel, lưu marker và backup dữ liệu.
+
+2. Cách chạy app
+- Mở terminal tại thư mục dự án.
+- Chạy lệnh:
+  `python app.py`
+- Sau đó mở trình duyệt và truy cập địa chỉ local do Flask hiển thị, thường là:
+  `http://127.0.0.1:5000`
+
+3. Giao diện chính
+- Bên trái là panel điều khiển.
+- Bên phải là bản đồ.
+- Trên bản đồ có các lớp nền như Street Map và Vệ tinh.
+
+4. Các chức năng trong panel bên trái
+
+4.1. Hiện chú thích
+- Checkbox "Hiện chú thích" dùng để ẩn hoặc hiện bảng chú thích trên bản đồ.
+- Mặc định chú thích được hiển thị sẵn.
+
+4.2. Độ mờ bản đồ
+- Thanh "Độ mờ bản đồ" dùng để thay đổi độ đậm hoặc nhạt của lớp conflict.
+- Kéo thanh trượt sang trái hoặc phải để điều chỉnh.
+
+4.3. Name / Icon
+- Mỗi dòng có 2 checkbox:
+  checkbox thứ nhất: ẩn hoặc hiện tên
+  checkbox thứ hai: ẩn hoặc hiện icon
+- Các lớp có thể bật hoặc tắt:
+  Site
+  Police
+  Bandit
+  Showroom
+  HQ
+  Draw
+
+4.4. Chỉnh sửa đối tượng
+- Edit Mode: bật hoặc tắt chế độ chỉnh sửa marker.
+- + Add Police: thêm marker Police.
+- + Add Bandit: thêm marker Bandit.
+- + Add Showroom: thêm marker Showroom.
+- Save Marker to File: lưu marker đã sửa vào file dữ liệu.
+
+4.5. Nhập dữ liệu
+- Checkbox "Menu import" dùng để ẩn hoặc hiện danh sách import.
+- Mặc định menu import được ẩn.
+- Khi tick vào, các mục import sẽ hiện ra:
+  Import Conflict
+  Import Police
+  Import Bandit
+  Import Showroom
+  Import Site
+  Import HQ
+- Mỗi mục nhấn "Chọn tệp" để tải lên file Excel `.xlsx`.
+
+4.6. Thao tác dữ liệu
+- Lưu Conflict Data: lưu thay đổi mức độ xung đột.
+- BackupDB: tải về một bản backup dữ liệu hiện tại.
+
+5. Cách xem dữ liệu trên bản đồ
+- Dùng nhóm "Name / Icon" để bật hoặc tắt tên hay icon của từng loại đối tượng.
+- Nếu muốn xem riêng icon Police, chỉ cần tick checkbox icon của Police.
+- Nếu muốn ẩn tên Showroom, bỏ tick checkbox tên của Showroom.
+
+6. Cách sửa conflict level
+- Tìm khu vực conflict trên bản đồ.
+- Nhấp chuột phải vào khu vực đó.
+- Chọn mức conflict level mong muốn trong menu hiện ra.
+- App sẽ tự động lưu thay đổi.
+- Nếu có thông báo xung đột dữ liệu, app sẽ yêu cầu tải lại dữ liệu mới.
+
+7. Cách import dữ liệu từ Excel
+- Trong panel, tick "Menu import".
+- Chọn đúng mục import cần dùng.
+- Bấm "Chọn tệp" và chọn file `.xlsx` phù hợp.
+- App sẽ tải lên và xử lý file.
+
+Lưu ý:
+- File import phải đúng định dạng Excel `.xlsx`.
+- Nếu sai định dạng hoặc thiếu cột, app sẽ báo lỗi.
+
+8. Cách sửa marker
+- Bấm "Edit Mode" để vào chế độ sửa.
+- Dùng các nút thêm marker nếu cần.
+- Di chuyển hoặc cập nhật marker theo nhu cầu.
+- Bấm "Save Marker to File" để lưu.
+
+9. Chức năng Draw
+- Lớp Draw dùng để hiển thị các đối tượng vẽ trên bản đồ.
+- Trong nhóm "Name / Icon", dòng Draw cho phép ẩn hoặc hiện phần vẽ.
+
+10. Backup dữ liệu
+- Bấm "BackupDB".
+- App sẽ tạo và tải về file backup.
+- Nên backup trước khi sửa dữ liệu lớn hoặc import hàng loạt.
+
+11. Về Marker API Key
+- Thông thường người dùng không cần nhập API Key để xem dữ liệu trên app.
+- API Key chỉ được yêu cầu nếu quản trị viên đã bật cơ chế bảo vệ cho các thao tác ghi dữ liệu trên server.
+- Khi đó, các thao tác như import file, lưu conflict data hoặc lưu marker có thể hiện hộp thoại yêu cầu nhập Marker API Key.
+- Nếu hộp thoại xuất hiện, nhập đúng key được cấp.
+- Sau khi nhập đúng, app sẽ nhớ key cho các thao tác tiếp theo trong phiên làm việc.
+
+12. Lỗi thường gặp
+
+12.1. Không hiển thị chú thích
+- Kiểm tra checkbox "Hiện chú thích" đã được tick chưa.
+
+12.2. Không thấy marker hoặc tên
+- Kiểm tra checkbox trong nhóm "Name / Icon".
+- Kiểm tra đã import đúng dữ liệu chưa.
+
+12.3. Import thất bại
+- Kiểm tra file có đúng đuôi `.xlsx` không.
+- Kiểm tra các cột trong file có đúng tên theo mẫu dữ liệu không.
+
+12.4. Không lưu được dữ liệu
+- Nếu hệ thống có bật bảo vệ ghi dữ liệu, kiểm tra Marker API Key.
+- Kiểm tra có ai khác vừa sửa cùng dữ liệu không.
+- Thử tải lại trang rồi thực hiện lại.
+
+13. Khuyến nghị cho người mới
+- Ban đầu chỉ nên xem dữ liệu và làm quen với nhóm "Name / Icon".
+- Trước khi import hoặc sửa hàng loạt, nên backup.
+- Nếu sửa marker hoặc conflict level, nên kiểm tra lại trên bản đồ sau khi lưu.
+
+14. Lệnh kiểm tra nhanh
+- Nếu cần chạy bộ self-test của app:
+  `python run_selftest.py`
+
+Bộ test này giúp kiểm tra nhanh các chức năng backend và frontend có bị lỗi sau khi sửa code hay không.
