@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 @backup_api.route('/backup_data')
-@require_role('admin')
+@require_role('editor')
 def backup_data():
     try:
         buffer = io.BytesIO()

@@ -51,6 +51,7 @@ class FrontendContractTests(unittest.TestCase):
             "currentUsername",
             "currentUserRole",
             "changePasswordBtn",
+            "viewAuditLogBtn",
             "createUserModalBtn",
             "deleteUserModalBtn",
         ]
@@ -63,6 +64,7 @@ class FrontendContractTests(unittest.TestCase):
         self.assertIn("applyRoleVisibility", auth_ui)
         self.assertIn("/api/auth/me", auth_ui)
         self.assertIn("/api/auth/logout", auth_ui)
+        self.assertIn("/api/audit-log", auth_ui)
         self.assertIn("/api/users", auth_ui)
         self.assertIn("data-required-role", read_text("frontend/scripts/ui/sidebar_template.js"))
 

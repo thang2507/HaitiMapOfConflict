@@ -12,6 +12,7 @@ from backend.services.conflict_service import (
     backup_conflict,
     conflict_geojson_path,
     convert_conflict_to_geojson,
+    summarize_conflict_changes,
 )
 from backend.services.audit_service import write_audit_log
 from backend.utils import file_version
@@ -79,6 +80,7 @@ def save_conflict_data():
                 geo = geojson.load(f)
 
             level_map = {item['name']: item['conflict_level'] for item in data}
+            change_details = summarize_conflict_changes(geo, level_map)
             backup_conflict(xlsx_path)
             df = pd.read_excel(xlsx_path)
             for feature in geo['features']:
@@ -97,7 +99,7 @@ def save_conflict_data():
 
         latest_version = file_version(geojson_path)
         logger.info('Saved conflict data update with %d entries', len(level_map))
-        write_audit_log('conflict.save', details={'updated_regions': len(level_map)})
+        write_audit_log('conflict.save', details=change_details)
         response = jsonify({'status': 'updated', 'version': latest_version})
         response.headers['X-Data-Version'] = latest_version
         return response

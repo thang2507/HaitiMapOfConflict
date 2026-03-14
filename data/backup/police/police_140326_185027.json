@@ -188,8 +188,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.9728160513392,
-          19.06599841996291
+          -72.01,
+          19.086
         ]
       },
       "properties": {
@@ -331,8 +331,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.0195012667514,
-          19.193164337889822
+          -72.022856,
+          19.190186
         ]
       },
       "properties": {
@@ -396,12 +396,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -72.53859992736243,
-          18.793232523009287
+          -72.514508,
+          18.771668
         ]
       },
       "properties": {
-        "PoliceName": "Chốt_Arcahaie_245"
+        "PoliceName": "Chốt_Arcahaie"
       }
     },
     {

@@ -11,12 +11,14 @@ from backend.services.audit_service import write_audit_log
 from backend.services.marker_service import (
     MARKER_LOCKS,
     convert_xlsx_to_json,
+    diff_marker_collections,
     infer_marker_type_from_payload,
     load_marker_collection,
     marker_file_path,
     marker_json_filename,
     marker_xlsx_path,
     normalize_marker_type,
+    read_marker_collection,
     write_marker_bundle,
 )
 from backend.utils import file_version
@@ -192,6 +194,7 @@ def save_markers():
                     'current_version': current_version
                 }), 409
 
+            before_collection = read_marker_collection(marker_type)
             if os.path.exists(target_path):
                 timestamp = datetime.now().strftime('%d%m%y_%H%M%S')
                 backup_path = os.path.join(backup_folder, f'{marker_type}_{timestamp}.json')
@@ -203,13 +206,14 @@ def save_markers():
             write_marker_bundle(marker_type, data, target_path, xlsx_path)
 
         latest_version = file_version(target_path)
+        change_details = diff_marker_collections(marker_type, before_collection, data)
         response = jsonify({
             'status': 'ok',
             'message': f'{filename} updated',
             'version': latest_version
         })
         response.headers['X-Data-Version'] = latest_version
-        write_audit_log('markers.save', details={'marker_type': marker_type, 'feature_count': len(data.get('features', []))})
+        write_audit_log('markers.save', details=change_details)
         return response
     except Exception as exc:
         logger.exception('save_markers failed')

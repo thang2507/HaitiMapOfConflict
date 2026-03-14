@@ -191,7 +191,7 @@ class BackendSelfTest(unittest.TestCase):
         backup_response = self.client.get("/backup_data")
         self.assertEqual(backup_response.status_code, 401)
 
-    def test_editor_can_save_conflict_data_but_not_backup(self):
+    def test_editor_can_save_conflict_data_and_download_backup(self):
         self.create_editor_user()
         self.login("editor", "Natcom@123")
         geojson_path = self.data_dir / "Haiti_conflict_map.geojson"
@@ -209,7 +209,9 @@ class BackendSelfTest(unittest.TestCase):
         self.assertEqual(saved_geojson["features"][0]["properties"]["conflict_level"], "level2")
 
         backup_response = self.client.get("/backup_data")
-        self.assertEqual(backup_response.status_code, 403)
+        self.assertEqual(backup_response.status_code, 200)
+        self.assertEqual(backup_response.mimetype, "application/zip")
+        backup_response.close()
 
     def test_admin_can_upload_conflict_and_markers_and_download_backup(self):
         self.login("admin", "Natcom@123")
@@ -268,6 +270,74 @@ class BackendSelfTest(unittest.TestCase):
         )
         self.assertEqual(save_drawings_response.status_code, 200)
 
+    def test_marker_and_draw_logs_include_before_after_states(self):
+        self.create_editor_user()
+        self.login("editor", "Natcom@123")
+
+        initial_marker_payload = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [-72.31, 18.51]},
+                    "properties": {"PoliceName": "PNH 1"},
+                }
+            ],
+        }
+        self.client.post("/save_markers?type=police", json=initial_marker_payload, headers={"X-Data-Version": "missing"})
+        marker_path = self.data_dir / "PolicePosition.json"
+        marker_version = file_version(str(marker_path))
+
+        updated_marker_payload = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [-72.4, 18.6]},
+                    "properties": {"PoliceName": "PNH 1"},
+                }
+            ],
+        }
+        self.client.post("/save_markers?type=police", json=updated_marker_payload, headers={"X-Data-Version": marker_version})
+
+        initial_draw_payload = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {"id": "draw-1", "color": "red"},
+                    "geometry": {"type": "Point", "coordinates": [-72.3, 18.5]},
+                }
+            ],
+        }
+        self.client.post("/save_drawings", json=initial_draw_payload)
+
+        updated_draw_payload = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {"id": "draw-1", "color": "blue"},
+                    "geometry": {"type": "Point", "coordinates": [-72.35, 18.55]},
+                }
+            ],
+        }
+        self.client.post("/save_drawings", json=updated_draw_payload)
+
+        marker_logs = [entry for entry in self.read_audit_entries() if entry["action"] == "markers.save"]
+        draw_logs = [entry for entry in self.read_audit_entries() if entry["action"] == "drawings.save"]
+
+        self.assertTrue(marker_logs)
+        self.assertTrue(draw_logs)
+        self.assertIn("before", marker_logs[-1]["details"]["updated"][0])
+        self.assertIn("after", marker_logs[-1]["details"]["updated"][0])
+        self.assertEqual(marker_logs[-1]["details"]["updated"][0]["before"]["lng"], -72.31)
+        self.assertEqual(marker_logs[-1]["details"]["updated"][0]["after"]["lng"], -72.4)
+        self.assertIn("before", draw_logs[-1]["details"]["updated"][0])
+        self.assertIn("after", draw_logs[-1]["details"]["updated"][0])
+        self.assertEqual(draw_logs[-1]["details"]["updated"][0]["before"]["properties"]["color"], "red")
+        self.assertEqual(draw_logs[-1]["details"]["updated"][0]["after"]["properties"]["color"], "blue")
+
     def test_admin_can_manage_users(self):
         self.login("admin", "Natcom@123")
 
@@ -298,7 +368,7 @@ class BackendSelfTest(unittest.TestCase):
         delete_response = self.client.delete("/api/users/newuser")
         self.assertEqual(delete_response.status_code, 200)
 
-    def test_audit_log_is_written_for_login_and_mutations(self):
+    def test_audit_log_is_written_for_mutations_only(self):
         self.create_editor_user()
         self.login("editor", "Natcom@123")
         geojson_path = self.data_dir / "Haiti_conflict_map.geojson"
@@ -311,8 +381,39 @@ class BackendSelfTest(unittest.TestCase):
         )
 
         actions = [entry["action"] for entry in self.read_audit_entries()]
-        self.assertIn("auth.login", actions)
         self.assertIn("conflict.save", actions)
+        self.assertNotIn("auth.login", actions)
+
+    def test_conflict_log_includes_before_after_states(self):
+        self.create_editor_user()
+        self.login("editor", "Natcom@123")
+        geojson_path = self.data_dir / "Haiti_conflict_map.geojson"
+        version = file_version(str(geojson_path))
+
+        self.client.post(
+            "/save_conflict_data",
+            json=[{"name": "Test Region", "conflict_level": "level2"}],
+            headers={"X-Data-Version": version},
+        )
+
+        conflict_logs = [entry for entry in self.read_audit_entries() if entry["action"] == "conflict.save"]
+        self.assertTrue(conflict_logs)
+        latest_log = conflict_logs[-1]
+        self.assertEqual(latest_log["details"]["requested_regions"], 1)
+        self.assertEqual(latest_log["details"]["updated_regions"], 1)
+        self.assertEqual(latest_log["details"]["changes"][0]["region_name"], "Test Region")
+        self.assertEqual(latest_log["details"]["changes"][0]["before"], "level0")
+        self.assertEqual(latest_log["details"]["changes"][0]["after"], "level2")
+
+    def test_editor_can_view_audit_log(self):
+        self.create_editor_user()
+        self.login("editor", "Natcom@123")
+
+        response = self.client.get("/api/audit-log")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["status"], "ok")
+        self.assertIsInstance(response.json["entries"], list)
 
 
 if __name__ == "__main__":

@@ -222,6 +222,35 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     document.getElementById('resetSelectedUserPasswordBtn')?.addEventListener('click', resetSelectedUserPassword);
   }
 
+  function ensureAuditLogModal() {
+    if (document.getElementById('auditLogModalBackdrop')) return;
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'auditLogModalBackdrop';
+    backdrop.className = 'auth-modal-backdrop';
+    backdrop.hidden = true;
+    backdrop.innerHTML = `
+      <div class="auth-modal audit-log-modal">
+        <h3>Log thay đổi</h3>
+        <div id="auditLogError" class="auth-error"></div>
+        <div id="auditLogList" class="audit-log-list"></div>
+        <div class="auth-modal-actions">
+          <button id="reloadAuditLogBtn" type="button" class="ghost-button">Tải lại</button>
+          <button id="closeAuditLogBtn" type="button" class="ghost-button">Đóng</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(backdrop);
+
+    backdrop.addEventListener('click', event => {
+      if (event.target === backdrop) backdrop.hidden = true;
+    });
+    document.getElementById('closeAuditLogBtn')?.addEventListener('click', () => {
+      backdrop.hidden = true;
+    });
+    document.getElementById('reloadAuditLogBtn')?.addEventListener('click', loadAuditLogEntries);
+  }
+
   async function loginFromModal() {
     const username = document.getElementById('authUsername')?.value.trim() || '';
     const password = document.getElementById('authPassword')?.value || '';
@@ -397,6 +426,57 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     alert(`✅ Đã đặt lại mật khẩu cho ${username}`);
   }
 
+  function renderAuditLogEntries(entries) {
+    const listEl = document.getElementById('auditLogList');
+    if (!listEl) return;
+
+    if (!entries.length) {
+      listEl.innerHTML = '<div class="audit-log-empty">Chưa có log.</div>';
+      return;
+    }
+
+    listEl.innerHTML = entries.map(entry => {
+      const details = JSON.stringify(entry.details || {}, null, 2);
+      const timestamp = entry.timestamp || '';
+      const username = entry.username || 'anonymous';
+      const action = entry.action || '';
+      const status = entry.status || '';
+      const method = entry.method || '';
+      const path = entry.path || '';
+
+      return `
+        <div class="audit-log-entry">
+          <div class="audit-log-meta">
+            <strong>${username}</strong>
+            <span>${timestamp}</span>
+          </div>
+          <div>${action} · ${status}</div>
+          <div>${method} ${path}</div>
+          <pre>${details}</pre>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function loadAuditLogEntries() {
+    const errorEl = document.getElementById('auditLogError');
+    const listEl = document.getElementById('auditLogList');
+    if (errorEl) errorEl.textContent = '';
+    if (listEl) listEl.innerHTML = '<div class="audit-log-empty">Đang tải...</div>';
+
+    const response = await fetch('/api/audit-log?limit=50', {
+      credentials: 'same-origin',
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      if (errorEl) errorEl.textContent = payload.message || 'Không tải được logfile';
+      if (listEl) listEl.innerHTML = '';
+      return;
+    }
+
+    renderAuditLogEntries(payload.entries || []);
+  }
+
   function bindUserManagement() {
     document.getElementById('changePasswordBtn')?.addEventListener('click', () => {
       ensureChangePasswordModal();
@@ -429,6 +509,14 @@ window.HaitiMapApp = window.HaitiMapApp || {};
       backdrop.hidden = false;
       document.getElementById('existingUsersSelect')?.focus();
     });
+
+    document.getElementById('viewAuditLogBtn')?.addEventListener('click', async () => {
+      ensureAuditLogModal();
+      const backdrop = document.getElementById('auditLogModalBackdrop');
+      if (!backdrop) return;
+      backdrop.hidden = false;
+      await loadAuditLogEntries();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -437,6 +525,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     ensureChangePasswordModal();
     ensureCreateUserModal();
     ensureDeleteUserModal();
+    ensureAuditLogModal();
     document.getElementById('loginBtn')?.addEventListener('click', openLoginModal);
     document.getElementById('logoutBtn')?.addEventListener('click', logout);
     bindUserManagement();

@@ -52,3 +52,27 @@ def convert_conflict_to_geojson(xlsx_path):
         geojson.dump(geo, f, indent=2)
     os.replace(temp_path, geojson_path)
     logger.info('Updated conflict GeoJSON from %s with %d matching regions', xlsx_path, len(conflict_map))
+
+
+def summarize_conflict_changes(geojson_payload, level_map):
+    changes = []
+    for feature in geojson_payload.get('features', []):
+        properties = feature.get('properties', {})
+        region_name = properties.get('ADM3_EN')
+        if region_name not in level_map:
+            continue
+        before_level = properties.get('conflict_level')
+        after_level = level_map[region_name]
+        if before_level == after_level:
+            continue
+        changes.append({
+            'region_name': region_name,
+            'before': before_level,
+            'after': after_level,
+        })
+
+    return {
+        'requested_regions': len(level_map),
+        'updated_regions': len(changes),
+        'changes': changes,
+    }

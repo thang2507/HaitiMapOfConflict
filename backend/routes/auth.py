@@ -7,7 +7,7 @@ from backend.auth import (
     require_login,
     require_role,
 )
-from backend.services.audit_service import write_audit_log
+from backend.services.audit_service import read_audit_logs, write_audit_log
 from backend.services.user_service import (
     create_user,
     delete_user,
@@ -30,11 +30,9 @@ def login():
 
     user = find_user(username)
     if not user or not verify_user_password(user, password):
-        write_audit_log('auth.login', status='failed', details={'username': username}, username=username or 'anonymous')
         return jsonify({'status': 'error', 'message': 'Sai tên đăng nhập hoặc mật khẩu'}), 401
 
     login_user_session(user)
-    write_audit_log('auth.login', details={'role': user['role']}, username=user['username'])
     return jsonify({
         'status': 'ok',
         'user': {'username': user['username'], 'role': user['role']},
@@ -44,8 +42,6 @@ def login():
 @auth_api.route('/api/auth/logout', methods=['POST'])
 @require_login
 def logout():
-    user = current_user()
-    write_audit_log('auth.logout', username=user['username'])
     logout_user_session()
     return jsonify({'status': 'ok'})
 
@@ -75,6 +71,13 @@ def change_own_password():
 def me():
     user = current_user()
     return jsonify({'status': 'ok', 'user': user})
+
+
+@auth_api.route('/api/audit-log', methods=['GET'])
+@require_role('editor')
+def get_audit_log():
+    limit = request.args.get('limit', 50)
+    return jsonify({'status': 'ok', 'entries': read_audit_logs(limit)})
 
 
 @auth_api.route('/api/users', methods=['GET'])

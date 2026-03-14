@@ -117,7 +117,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
           </div>
           <div class="button-stack">
             <button id="saveButton" type="button">Lưu Conflict Data</button>
-            <button id="backupDBBtn" type="button" data-required-role="admin" hidden>BackupDB</button>
+            <button id="backupDBBtn" type="button">BackupDB</button>
           </div>
         </div>
     `;
@@ -131,6 +131,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
             <h3 class="section-title">Quản lý tài khoản</h3>
           </div>
           <button id="changePasswordBtn" type="button">Đổi mật khẩu</button>
+          <button id="viewAuditLogBtn" type="button">Xem logfile</button>
           <button id="createUserModalBtn" type="button" data-required-role="admin" hidden>Tạo user</button>
           <button id="deleteUserModalBtn" type="button" data-required-role="admin" hidden>Xóa user</button>
         </div>

@@ -169,3 +169,78 @@ def load_marker_collection(marker_type):
         response = jsonify(json.load(f))
         response.headers['X-Data-Version'] = file_version(path)
         return response
+
+
+def read_marker_collection(marker_type):
+    path = marker_file_path(marker_type)
+    if not path or not os.path.exists(path):
+        return {'type': 'FeatureCollection', 'features': []}
+    with open(path, 'r', encoding='utf-8') as handle:
+        return json.load(handle)
+
+
+def _marker_name_field(marker_type):
+    marker_config = MARKER_FILES.get(normalize_marker_type(marker_type))
+    if not marker_config:
+        return None
+    return marker_config['name_field']
+
+
+def summarize_marker_feature(marker_type, feature):
+    name_field = _marker_name_field(marker_type)
+    geometry = feature.get('geometry', {}) if isinstance(feature, dict) else {}
+    coordinates = geometry.get('coordinates', []) if isinstance(geometry, dict) else []
+    properties = feature.get('properties', {}) if isinstance(feature, dict) else {}
+    return {
+        'name': properties.get(name_field, '') if name_field else '',
+        'lng': coordinates[0] if len(coordinates) > 0 else None,
+        'lat': coordinates[1] if len(coordinates) > 1 else None,
+    }
+
+
+def diff_marker_collections(marker_type, before_collection, after_collection):
+    before_features = before_collection.get('features', []) if isinstance(before_collection, dict) else []
+    after_features = after_collection.get('features', []) if isinstance(after_collection, dict) else []
+    name_field = _marker_name_field(marker_type)
+
+    def build_index(features):
+        indexed = {}
+        for feature in features:
+            properties = feature.get('properties', {}) if isinstance(feature, dict) else {}
+            geometry = feature.get('geometry', {}) if isinstance(feature, dict) else {}
+            coordinates = geometry.get('coordinates', []) if isinstance(geometry, dict) else []
+            key = properties.get(name_field) if name_field else None
+            if not key:
+                key = json.dumps(coordinates, ensure_ascii=False)
+            indexed[str(key)] = feature
+        return indexed
+
+    before_index = build_index(before_features)
+    after_index = build_index(after_features)
+
+    created = []
+    updated = []
+    deleted = []
+
+    for key, after_feature in after_index.items():
+        before_feature = before_index.get(key)
+        if before_feature is None:
+            created.append({'before': None, 'after': summarize_marker_feature(marker_type, after_feature)})
+        elif before_feature != after_feature:
+            updated.append({
+                'before': summarize_marker_feature(marker_type, before_feature),
+                'after': summarize_marker_feature(marker_type, after_feature),
+            })
+
+    for key, before_feature in before_index.items():
+        if key not in after_index:
+            deleted.append({'before': summarize_marker_feature(marker_type, before_feature), 'after': None})
+
+    return {
+        'marker_type': marker_type,
+        'feature_count_before': len(before_features),
+        'feature_count_after': len(after_features),
+        'created': created,
+        'updated': updated,
+        'deleted': deleted,
+    }
