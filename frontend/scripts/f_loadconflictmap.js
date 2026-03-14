@@ -73,6 +73,9 @@ document.addEventListener('click', () => {
           layer.on('mouseout', () => map.closePopup());
           layer.on('click', () => layer.bindPopup(`<strong>${name}</strong>`).openPopup());
           layer.on('contextmenu', e => {
+            if (!haitiMapApp.services?.hasRole?.('editor')) {
+              return;
+            }
             if (e.originalEvent) {
               e.originalEvent.preventDefault();
               e.originalEvent.stopPropagation();
@@ -112,8 +115,11 @@ document.addEventListener('click', () => {
                       name: feature.properties.ADM3_EN,
                       conflict_level: level
                     }])
-                  });
+                  }, { timeoutMs: 10000 });
                   if (!response.ok) {
+                    if (response.status === 403) {
+                      throw new Error('Bạn không có quyền sửa conflict level');
+                    }
                     if (response.status === 409) {
                       const conflict = await response.json();
                       window.conflictDataVersion = conflict.current_version || 'missing';

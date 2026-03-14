@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok) {
           alert('✅ Đã lưu trạng thái lên Server!');
           loadConflictMap();
+        } else if (res.status === 403) {
+          throw new Error('Bạn không có quyền import conflict');
         } else {
           return res.text().then(text => {
             throw new Error(text || 'Lỗi khi lưu Conflict Template!');

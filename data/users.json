@@ -1,4 +1,67 @@
 [
-  { "username": "admin", "password": "147852" },
-  { "username": "user", "password": "123456" }
+  {
+    "username": "admin",
+    "password_hash": "scrypt:32768:8:1$AQ8m5QaCFFfump8k$c6c117d980d859ea78e5e195eba82a98bf31368a55bd2280c383f1fde2d7c2c315c0d2415cd053abbd96fd55e9679923f086104db304c358d6f272423dd4d8b7",
+    "role": "admin"
+  },
+  {
+    "username": "guest",
+    "password_hash": "scrypt:32768:8:1$jCZOsoZdfb8lkRH2$65ae5bf0309d3e4dced11243ea14ebcb6dd976cc9623a31c52d0a2ea065df4c8177f03ca3f44ff7c1cdaebccd8ca48d97200bef800feb9e77d2f11732a95d406",
+    "role": "guest"
+  },
+  {
+    "username": "selftest",
+    "password_hash": "scrypt:32768:8:1$R9gUGfRmclVGYpLX$1236c7e299fa88967f720c40f27ba43bc0f490f880d972c218cbdf2e2e3b55519d7a13d89353dca9808278e9fe3510847f92ff770df06caa0a2f51bf41da66fc",
+    "role": "editor"
+  },
+  {
+    "username": "thangnc",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "tuanvv3",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "phongdx1",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "daoba",
+    "password_hash": "scrypt:32768:8:1$2sRWAhmT8SmpYdbm$4b10a8c6e578266ae532baa069d8989feb71ed8dafd072ff5d35f1eed9c3648d6d31eb4846ad1ff59f91a7606efa1be4af31f0445deaffbdffc432e428d5e3f3",
+    "role": "editor"
+  },
+  {
+    "username": "khanhpv",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "vipv1",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "quynhnn3",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "longph1",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "tuannd2",
+    "password": "Natcom@123",
+    "role": "editor"
+  },
+  {
+    "username": "xuannt6",
+    "password": "Natcom@123",
+    "role": "editor"
+  }
 ]

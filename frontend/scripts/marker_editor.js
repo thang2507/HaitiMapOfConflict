@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const app = window.HaitiMapApp || (window.HaitiMapApp = {});
-  const sharedGetMarkerKeyHeader = app.services?.getMarkerKeyHeader;
   const MARKER_CONFIG = {
     police: {
       label: 'Police',
@@ -141,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function enableEditMode(enabled) {
+    if (enabled && !app.services?.hasRole?.('editor')) {
+      alert('Bạn không có quyền chỉnh sửa marker');
+      return;
+    }
     editMode = enabled;
     markerTypes.forEach(markerType => {
       getState(markerType).icons.forEach(marker => makeDraggable(marker, editMode));
@@ -457,26 +460,19 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     };
 
-    const response = await fetchWithTimeout(`/save_markers?type=${markerType}`, {
+    const response = await fetchWithMarkerAuth(`/save_markers?type=${markerType}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Data-Version': window.markerDataVersions[markerType] || 'missing',
-          ...(typeof sharedGetMarkerKeyHeader === 'function' ? sharedGetMarkerKeyHeader() : {})
+          'X-Data-Version': window.markerDataVersions[markerType] || 'missing'
         },
         body: JSON.stringify(payload)
-      }, 10000);
-
-    if (response.status === 401) {
-      const key = prompt('Nhập Marker API Key:');
-      if (key && key.trim()) {
-        sessionStorage.setItem('marker_api_key', key.trim());
-        return saveType(markerType);
-      }
-      throw new Error('Unauthorized');
-    }
+      }, { timeoutMs: 10000 });
 
     if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('Bạn không có quyền lưu marker');
+      }
       if (response.status === 409) {
         const conflict = await response.json();
         if (conflict.current_version) {
@@ -540,6 +536,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!button) return;
     button.addEventListener('click', () => {
+      if (!app.services?.hasRole?.('editor')) {
+        alert('Bạn không có quyền thêm marker');
+        return;
+      }
       if (!editMode) return;
       addMode = addMode === markerType ? null : markerType;
       syncAddButtons();
@@ -580,6 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   map.on('click', event => {
+    if (!app.services?.hasRole?.('editor')) return;
     if (!editMode || !addMode) return;
     createMarker(addMode, event.latlng);
   });

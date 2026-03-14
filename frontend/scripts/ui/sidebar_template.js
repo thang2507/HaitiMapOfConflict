@@ -16,6 +16,21 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     `;
   }
 
+  function buildSessionSection() {
+    return `
+        <div class="session-summary">
+          <div>
+            <div id="currentUsername" class="session-username">Guest</div>
+            <div id="currentUserRole" class="session-role">ANONYMOUS</div>
+          </div>
+          <div class="session-actions">
+            <button id="loginBtn" type="button" class="ghost-button">Login</button>
+            <button id="logoutBtn" type="button" class="ghost-button" hidden>Logout</button>
+          </div>
+        </div>
+    `;
+  }
+
   function buildLayerSection() {
     return `
         <div class="control-section layer-section">
@@ -28,7 +43,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
             <label class="toggle-row"><input type="checkbox" id="toggleBanditLabel"><input type="checkbox" id="toggleBanditIcon" checked> <span>Bandit</span></label>
             <label class="toggle-row"><input type="checkbox" id="toggleShowroomLabel"><input type="checkbox" id="toggleShowroomIcon" checked> <span>Showroom</span></label>
             <label class="toggle-row"><input type="checkbox" id="toggleHQLabel" checked><input type="checkbox" id="toggleHQIcon" checked> <span>HQ</span></label>
-            <label class="toggle-row"><input type="checkbox" id="toggleDrawnItems" checked><input type="checkbox" id="toggleDrawTools" checked> <span>Draw</span></label>
+            <label class="toggle-row"><input type="checkbox" id="toggleDrawnItems" checked><input type="checkbox" id="toggleDrawTools" checked data-required-role="editor"> <span>Draw</span></label>
           </div>
         </div>
     `;
@@ -36,7 +51,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
 
   function buildMarkerSection() {
     return `
-        <div class="control-section">
+        <div class="control-section" data-required-role="editor" hidden>
           <div class="section-header">
             <span class="section-eyebrow">Markers</span>
             <h3 class="section-title">Chỉnh sửa đối tượng</h3>
@@ -54,7 +69,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
 
   function buildImportSection() {
     return `
-        <div class="control-section">
+        <div class="control-section" data-required-role="admin" hidden>
           <div class="section-header">
             <span class="section-eyebrow">Import</span>
             <h3 class="section-title">Nhập dữ liệu</h3>
@@ -95,15 +110,29 @@ window.HaitiMapApp = window.HaitiMapApp || {};
 
   function buildDataSection() {
     return `
-        <div class="control-section">
+        <div class="control-section" data-required-role="editor" hidden>
           <div class="section-header">
             <span class="section-eyebrow">Data</span>
             <h3 class="section-title">Thao tác dữ liệu</h3>
           </div>
           <div class="button-stack">
             <button id="saveButton" type="button">Lưu Conflict Data</button>
-            <button id="backupDBBtn" type="button">BackupDB</button>
+            <button id="backupDBBtn" type="button" data-required-role="admin" hidden>BackupDB</button>
           </div>
+        </div>
+    `;
+  }
+
+  function buildUserManagementSection() {
+    return `
+        <div class="control-section" data-required-role="editor" hidden>
+          <div class="section-header">
+            <span class="section-eyebrow">User</span>
+            <h3 class="section-title">Quản lý tài khoản</h3>
+          </div>
+          <button id="changePasswordBtn" type="button">Đổi mật khẩu</button>
+          <button id="createUserModalBtn" type="button" data-required-role="admin" hidden>Tạo user</button>
+          <button id="deleteUserModalBtn" type="button" data-required-role="admin" hidden>Xóa user</button>
         </div>
     `;
   }
@@ -113,12 +142,14 @@ window.HaitiMapApp = window.HaitiMapApp || {};
       <div id="controls">
         <div class="controls-header">
           <p class="controls-kicker">HAITI CONFLICT MAP</p>
+          ${buildSessionSection()}
         </div>
         ${buildMapSection()}
         ${buildLayerSection()}
         ${buildMarkerSection()}
         ${buildImportSection()}
         ${buildDataSection()}
+        ${buildUserManagementSection()}
       </div>
       <button id="toggleSidebarBtn">☰ Hide Panel</button>
     `;

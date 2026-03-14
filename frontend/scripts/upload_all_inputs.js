@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => {
           if (res.ok) {
             alert(`✅ Đã lưu ${id}`);
+          } else if (res.status === 403) {
+            throw new Error('Bạn không có quyền import dữ liệu');
           } else {
             return res.text().then(text => {
               throw new Error(text || `Lỗi khi lưu ${id}`);

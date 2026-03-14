@@ -7,8 +7,9 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify, request
 
-from backend.auth import check_marker_api_key
+from backend.auth import require_role
 from backend.config import DATA_DIR, DRAW_BACKUP_DIR
+from backend.services.audit_service import write_audit_log
 
 
 drawings_api = Blueprint('drawings_api', __name__)
@@ -38,10 +39,8 @@ def load_drawings():
 
 
 @drawings_api.route('/save_drawings', methods=['POST'])
+@require_role('editor')
 def save_drawings():
-    if not check_marker_api_key():
-        return jsonify({'status': 'error', 'message': 'Unauthorized'}), 401
-
     data = request.json
     if not _is_feature_collection(data):
         return jsonify({'status': 'error', 'message': 'Invalid GeoJSON payload'}), 400
@@ -65,7 +64,9 @@ def save_drawings():
             os.replace(temp_path, DRAWING_FILE)
 
         logger.info('Saved drawings to %s', DRAWING_FILE)
+        write_audit_log('drawings.save', details={'feature_count': len(data.get('features', []))})
         return jsonify({'status': 'ok'})
     except Exception as exc:
         logger.exception('Failed to save drawings')
+        write_audit_log('drawings.save', status='failed', details={'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500

@@ -16,6 +16,9 @@ function getCurrentOpacity() {
 }
 
 async function saveDrawings() {
+    if (!haitiMapApp.services?.hasRole?.('editor')) {
+        throw new Error('Bạn không có quyền lưu drawings');
+    }
     const geojson = {
         type: "FeatureCollection",
         features: drawnItems.getLayers().map(layer => {
@@ -48,8 +51,11 @@ async function saveDrawings() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(geojson)
-    });
+    }, { timeoutMs: 10000 });
     if (!response.ok) {
+        if (response.status === 403) {
+            throw new Error('Bạn không có quyền lưu drawings');
+        }
         const text = await response.text();
         throw new Error(text || 'Không lưu được drawings');
     }
@@ -268,45 +274,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorPickerControl = document.querySelector('.leaflet-control-colorpicker');
 
     if (toggleDrawTools) {
-        toggleDrawTools.addEventListener('change', function () {
-            // Ẩn/hiện các phần tử liên quan tới công cụ vẽ
+        const syncDrawToolVisibility = () => {
+            const canEdit = !!haitiMapApp.services?.hasRole?.('editor');
+            const visible = canEdit && toggleDrawTools.checked;
             document.querySelectorAll('.leaflet-draw, .leaflet-draw-toolbar, .leaflet-draw-section').forEach(el => {
-                el.style.display = this.checked ? 'block' : 'none';
+                el.style.display = visible ? 'block' : 'none';
             });
 
             if (colorPickerControl) {
-                colorPickerControl.style.display = this.checked ? 'block' : 'none';
+                colorPickerControl.style.display = visible ? 'block' : 'none';
             }
+        };
+
+        toggleDrawTools.addEventListener('change', function () {
+            syncDrawToolVisibility();
         });
+
+        haitiMapApp.events.on('authStateReady', syncDrawToolVisibility);
+        syncDrawToolVisibility();
     }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const deleteButton = document.querySelector('.leaflet-draw-edit-remove');
-  
-    if (deleteButton) {
-      // Clone nút và thay thế để gỡ event gốc
-      const clone = deleteButton.cloneNode(true);
-      deleteButton.parentNode.replaceChild(clone, deleteButton);
-  
-      clone.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation(); // ⛔ chặn event gốc Leaflet
-  
-        const password = prompt('Nhập mật khẩu để xóa:');
-        if (password === '0305') {
-          // ✅ Gọi sự kiện như bình thường sau khi đúng mật khẩu
-          drawControl._toolbars.edit._modes.remove.handler.enable();
-  
-          // Gỡ tooltip nếu cần
-          drawnItems.eachLayer(layer => {
-            if (layer.getTooltip()) layer.unbindTooltip();
-          });
-        } else {
-          alert('❌ Mật khẩu không đúng. Không thể xóa!');
-        }
-      });
-    }
-  });
   
   

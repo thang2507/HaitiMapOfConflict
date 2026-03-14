@@ -5,6 +5,11 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     conflictLayer: null,
     conflictDataVersion: 'missing',
     markerDataVersions: {},
+    auth: {
+      isAuthenticated: false,
+      user: null,
+      role: 'guest',
+    },
     ui: {
       sidebarVisible: true,
       importMenuVisible: false,

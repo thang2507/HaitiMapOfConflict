@@ -5,8 +5,9 @@ from datetime import datetime
 
 from flask import Blueprint, jsonify, request, send_from_directory
 
-from backend.auth import require_marker_api_key
+from backend.auth import require_role
 from backend.config import DATA_DIR
+from backend.services.audit_service import write_audit_log
 from backend.services.marker_service import (
     MARKER_LOCKS,
     convert_xlsx_to_json,
@@ -53,7 +54,7 @@ def process_site_position():
 
 
 @marker_api.route('/upload_site', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_site():
     try:
         file = request.files.get('file')
@@ -62,53 +63,61 @@ def upload_site():
 
         xlsx_path = os.path.join(DATA_DIR, 'SitePosition.xlsx')
         file.save(xlsx_path)
+        write_audit_log('markers.upload', details={'marker_type': 'site', 'filename': file.filename})
         return process_site_position()
     except Exception as exc:
         logger.exception('upload_site failed')
+        write_audit_log('markers.upload', status='failed', details={'marker_type': 'site', 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @marker_api.route('/upload_police', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_police():
     try:
         file = request.files.get('file')
         if not file or not file.filename.endswith('.xlsx'):
             return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+        write_audit_log('markers.upload', details={'marker_type': 'police', 'filename': file.filename})
         return _handle_marker_upload(file, 'PolicePosition.xlsx', 'PolicePosition.json', 'PoliceName')
     except Exception as exc:
         logger.exception('upload_police failed')
+        write_audit_log('markers.upload', status='failed', details={'marker_type': 'police', 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @marker_api.route('/upload_showroom', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_showroom():
     try:
         file = request.files.get('file')
         if not file or not file.filename.endswith('.xlsx'):
             return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+        write_audit_log('markers.upload', details={'marker_type': 'showroom', 'filename': file.filename})
         return _handle_marker_upload(file, 'ShowroomPosition.xlsx', 'ShowroomPosition.json', 'ShowroomName')
     except Exception as exc:
         logger.exception('upload_showroom failed')
+        write_audit_log('markers.upload', status='failed', details={'marker_type': 'showroom', 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @marker_api.route('/upload_bandit', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_bandit():
     try:
         file = request.files.get('file')
         if not file or not file.filename.endswith('.xlsx'):
             return jsonify({'status': 'error', 'message': 'Invalid file'}), 400
+        write_audit_log('markers.upload', details={'marker_type': 'bandit', 'filename': file.filename})
         return _handle_marker_upload(file, 'BanditPosition.xlsx', 'BanditPosition.json', 'BanditName')
     except Exception as exc:
         logger.exception('upload_bandit failed')
+        write_audit_log('markers.upload', status='failed', details={'marker_type': 'bandit', 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @marker_api.route('/upload_hq', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_hq():
     file = request.files.get('file')
     if file and file.filename.endswith('.xlsx'):
@@ -121,9 +130,11 @@ def upload_hq():
                 name_field='HQName',
                 additional_fields=[],
             )
+            write_audit_log('markers.upload', details={'marker_type': 'hq', 'filename': file.filename})
             return jsonify({'status': 'ok', 'message': 'HQ_Position.json created successfully'})
         except Exception as exc:
             logger.exception('HQ position conversion failed for %s', xlsx_path)
+            write_audit_log('markers.upload', status='failed', details={'marker_type': 'hq', 'reason': str(exc)})
             return jsonify({'status': 'error', 'message': str(exc)}), 500
 
     return jsonify({'status': 'error', 'message': 'Invalid file format. Please upload an .xlsx file'}), 400
@@ -139,7 +150,7 @@ def load_markers():
 
 
 @marker_api.route('/save_markers', methods=['POST'])
-@require_marker_api_key
+@require_role('editor')
 def save_markers():
     try:
         marker_type = normalize_marker_type(request.args.get('type'))
@@ -198,7 +209,9 @@ def save_markers():
             'version': latest_version
         })
         response.headers['X-Data-Version'] = latest_version
+        write_audit_log('markers.save', details={'marker_type': marker_type, 'feature_count': len(data.get('features', []))})
         return response
     except Exception as exc:
         logger.exception('save_markers failed')
+        write_audit_log('markers.save', status='failed', details={'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500

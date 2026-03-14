@@ -28,6 +28,8 @@ function saveConflictData() {
           window.conflictDataVersion = result.version || res.headers.get('X-Data-Version') || 'missing';
           alert('✅ Dữ liệu đã được lưu!');
         });
+      } else if (res.status === 403) {
+        throw new Error('Bạn không có quyền lưu conflict data');
       } else if (res.status === 409) {
         return res.json().then(conflict => {
           window.conflictDataVersion = conflict.current_version || 'missing';

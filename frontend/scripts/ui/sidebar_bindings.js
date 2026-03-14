@@ -66,7 +66,7 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     document.getElementById('backupDBBtn')?.addEventListener('click', () => {
       const fetchWithMarkerAuth = getMarkerAuthFetch();
       if (!fetchWithMarkerAuth) {
-        alert('❌ Backup thất bại: fetchWithMarkerAuth is not available');
+        alert('❌ Backup thất bại: chưa sẵn sàng xác thực phiên');
         return;
       }
 

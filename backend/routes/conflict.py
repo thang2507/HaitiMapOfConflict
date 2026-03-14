@@ -5,7 +5,7 @@ import geojson
 import pandas as pd
 from flask import Blueprint, jsonify, request, send_from_directory
 
-from backend.auth import require_marker_api_key
+from backend.auth import require_role
 from backend.config import DATA_DIR
 from backend.services.conflict_service import (
     CONFLICT_LOCK,
@@ -13,6 +13,7 @@ from backend.services.conflict_service import (
     conflict_geojson_path,
     convert_conflict_to_geojson,
 )
+from backend.services.audit_service import write_audit_log
 from backend.utils import file_version
 
 
@@ -21,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 @conflict_api.route('/upload_conflict', methods=['POST'])
-@require_marker_api_key
+@require_role('admin')
 def upload_conflict():
     try:
         file = request.files.get('file')
@@ -32,14 +33,16 @@ def upload_conflict():
         backup_conflict(xlsx_path)
         file.save(xlsx_path)
         convert_conflict_to_geojson(xlsx_path)
+        write_audit_log('conflict.upload', details={'filename': file.filename})
         return jsonify({'status': 'ok'})
     except Exception as exc:
         logger.exception('upload_conflict failed')
+        write_audit_log('conflict.upload', status='failed', details={'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @conflict_api.route('/save_conflict_data', methods=['POST'])
-@require_marker_api_key
+@require_role('editor')
 def save_conflict_data():
     try:
         data = request.get_json()
@@ -94,11 +97,13 @@ def save_conflict_data():
 
         latest_version = file_version(geojson_path)
         logger.info('Saved conflict data update with %d entries', len(level_map))
+        write_audit_log('conflict.save', details={'updated_regions': len(level_map)})
         response = jsonify({'status': 'updated', 'version': latest_version})
         response.headers['X-Data-Version'] = latest_version
         return response
     except Exception as exc:
         logger.exception('save_conflict_data failed')
+        write_audit_log('conflict.save', status='failed', details={'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 

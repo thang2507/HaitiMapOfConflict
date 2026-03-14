@@ -38,6 +38,31 @@
   color: rgba(191, 219, 254, 0.8);
 }
 
+#controls .session-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#controls .session-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#controls .session-username {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+#controls .session-role {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(191, 219, 254, 0.86);
+}
+
 #controls .control-section {
   display: flex;
   flex-direction: column;
@@ -47,6 +72,15 @@
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(148, 163, 184, 0.24);
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+#controls [hidden] {
+  display: none !important;
+}
+
+#controls .is-role-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 #controls .section-header {
@@ -196,6 +230,9 @@
 }
 
 #controls input[type="file"],
+#controls input[type="text"],
+#controls input[type="password"],
+#controls select,
 #controls button {
   padding: 5px;
   font-size: 14px;
@@ -204,6 +241,16 @@
 #controls input[type="file"] {
   width: 100%;
   box-sizing: border-box;
+}
+
+#controls input[type="text"],
+#controls input[type="password"],
+#controls select {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
 }
 
 #controls button {
@@ -262,4 +309,124 @@
 
 #toggleSidebarBtn:hover {
   background: rgba(15, 23, 42, 0.96);
+}
+
+#controls .ghost-button,
+#controls .danger.ghost {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border: 1px solid rgba(191, 219, 254, 0.24);
+}
+
+#controls .danger.ghost {
+  color: #1e293b;
+  border-color: rgba(239, 68, 68, 0.25);
+  background: rgba(254, 226, 226, 0.7);
+}
+
+#controls .users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+#controls .admin-user-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+#controls .user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+#controls .user-row strong {
+  display: block;
+  color: #0f172a;
+}
+
+#controls .user-row span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+#controls .user-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.46);
+  z-index: 5000;
+}
+
+.auth-modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.auth-modal {
+  width: min(270px, calc(100vw - 32px));
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-modal h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.auth-modal p,
+.auth-modal label {
+  margin: 0;
+  color: #334155;
+}
+
+.auth-modal label {
+  font-size: 12px;
+}
+
+.auth-modal input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.auth-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.auth-error {
+  min-height: 18px;
+  font-size: 13px;
+  color: #b91c1c;
 }

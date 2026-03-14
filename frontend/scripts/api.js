@@ -2,8 +2,7 @@ var haitiMapApp = window.HaitiMapApp || (window.HaitiMapApp = {});
 haitiMapApp.services = haitiMapApp.services || {};
 
 function getMarkerKeyHeader() {
-  const key = sessionStorage.getItem('marker_api_key') || '';
-  return key ? { 'X-Marker-Key': key } : {};
+  return {};
 }
 
 function ensureAppAlertStyles() {
@@ -138,24 +137,15 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 10000) {
 }
 
 async function fetchWithMarkerAuth(url, options = {}, settings = {}) {
-  const { timeoutMs = 10000, retryOnUnauthorized = true } = settings;
-  const headers = { ...(options.headers || {}), ...getMarkerKeyHeader() };
+  const { timeoutMs = 10000, redirectOnUnauthorized = true } = settings;
+  const headers = { ...(options.headers || {}) };
 
   let response = await fetchWithTimeout(url, { ...options, headers }, timeoutMs);
-  if (response.status !== 401 || !retryOnUnauthorized) {
+  if (response.status !== 401 || !redirectOnUnauthorized) {
     return response;
   }
-
-  const key = prompt('Nhập Marker API Key:');
-  if (!key || !key.trim()) {
-    return response;
-  }
-
-  sessionStorage.setItem('marker_api_key', key.trim());
-  return fetchWithTimeout(url, {
-    ...options,
-    headers: { ...(options.headers || {}), ...getMarkerKeyHeader() }
-  }, timeoutMs);
+  window.location.href = '/login';
+  return response;
 }
 
 haitiMapApp.services.getMarkerKeyHeader = getMarkerKeyHeader;

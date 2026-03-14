@@ -19,6 +19,7 @@ class FrontendContractTests(unittest.TestCase):
             "frontend/scripts/ui/sidebar_template.js",
             "frontend/scripts/ui/sidebar_bindings.js",
             "frontend/scripts/menu_panel.js",
+            "frontend/scripts/auth_ui.js",
             "frontend/scripts/f_loadconflictmap.js",
             "frontend/scripts/legend.js",
             "frontend/scripts/draw.js",
@@ -46,10 +47,24 @@ class FrontendContractTests(unittest.TestCase):
             "toggleLegendBtn",
             "toggleImportMenu",
             "importMenuSection",
+            "logoutBtn",
+            "currentUsername",
+            "currentUserRole",
+            "changePasswordBtn",
+            "createUserModalBtn",
+            "deleteUserModalBtn",
         ]
         for element_id in expected_ids:
             with self.subTest(element_id=element_id):
                 self.assertIn(element_id, sidebar_template)
+
+    def test_auth_ui_supports_role_based_visibility_and_user_management(self):
+        auth_ui = read_text("frontend/scripts/auth_ui.js")
+        self.assertIn("applyRoleVisibility", auth_ui)
+        self.assertIn("/api/auth/me", auth_ui)
+        self.assertIn("/api/auth/logout", auth_ui)
+        self.assertIn("/api/users", auth_ui)
+        self.assertIn("data-required-role", read_text("frontend/scripts/ui/sidebar_template.js"))
 
     def test_upload_inputs_match_import_endpoints(self):
         sidebar_template = read_text("frontend/scripts/ui/sidebar_template.js")
@@ -108,6 +123,7 @@ class FrontendContractTests(unittest.TestCase):
         self.assertIn("toggleImportMenu.checked = !!app.state.ui.importMenuVisible", bindings_js)
         self.assertIn("importMenuSection.hidden = !app.state.ui.importMenuVisible", bindings_js)
         self.assertIn("importMenuVisible: false", app_state_js)
+        self.assertIn("role: 'guest'", app_state_js)
 
 
 if __name__ == "__main__":
