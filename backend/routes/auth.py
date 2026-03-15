@@ -7,7 +7,7 @@ from backend.auth import (
     require_login,
     require_role,
 )
-from backend.services.audit_service import read_audit_logs, write_audit_log
+from backend.services.audit_service import read_audit_logs
 from backend.services.user_service import (
     create_user,
     delete_user,
@@ -59,10 +59,8 @@ def change_own_password():
             payload.get('new_password'),
         )
     except ValueError as exc:
-        write_audit_log('auth.password_change', status='failed', details={'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 400
 
-    write_audit_log('auth.password_change', details={'username': user['username']})
     return jsonify({'status': 'ok'})
 
 
@@ -94,10 +92,8 @@ def add_user():
     try:
         user = create_user(payload.get('username'), payload.get('password'), 'editor')
     except ValueError as exc:
-        write_audit_log('users.create', status='failed', details={'username': payload.get('username'), 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 400
 
-    write_audit_log('users.create', details={'username': user['username'], 'role': user['role']})
     return jsonify({'status': 'ok', 'user': user}), 201
 
 
@@ -114,10 +110,8 @@ def remove_user(username):
     try:
         delete_user(username)
     except ValueError as exc:
-        write_audit_log('users.delete', status='failed', details={'username': username, 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 404
 
-    write_audit_log('users.delete', details={'username': username})
     return jsonify({'status': 'ok'})
 
 
@@ -132,8 +126,6 @@ def reset_user_password(username):
     try:
         update_user_password(username, payload.get('password'))
     except ValueError as exc:
-        write_audit_log('users.password_reset', status='failed', details={'username': username, 'reason': str(exc)})
         return jsonify({'status': 'error', 'message': str(exc)}), 400
 
-    write_audit_log('users.password_reset', details={'username': username})
     return jsonify({'status': 'ok'})

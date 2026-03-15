@@ -1,5 +1,6 @@
 import json
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 from flask import request
 
@@ -7,6 +8,7 @@ from backend.auth import current_user
 from backend.config import AUDIT_LOG_FILE
 
 EXCLUDED_ACTIONS = {'auth.login', 'auth.logout'}
+HAITI_TZ = ZoneInfo('America/Port-au-Prince')
 
 
 def write_audit_log(action, status='success', details=None, username=None):
@@ -16,7 +18,7 @@ def write_audit_log(action, status='success', details=None, username=None):
         actor = user['username'] if user else 'anonymous'
 
     payload = {
-        'timestamp': datetime.now(timezone.utc).isoformat(),
+        'timestamp': datetime.now(timezone.utc).astimezone(HAITI_TZ).isoformat(),
         'username': actor,
         'status': status,
         'action': action,

@@ -436,7 +436,12 @@ window.HaitiMapApp = window.HaitiMapApp || {};
     }
 
     listEl.innerHTML = entries.map(entry => {
-      const details = JSON.stringify(entry.details || {}, null, 2);
+      const details = JSON.stringify(entry.details || {}, null, 2)
+        .replace(/"created":/g, '"CREATED":')
+        .replace(/"updated":/g, '"UPDATED":')
+        .replace(/"deleted":/g, '"DELETED":')
+        .replace(/"before":/g, '"BEFORE":')
+        .replace(/"after":/g, '"AFTER":');
       const timestamp = entry.timestamp || '';
       const username = entry.username || 'anonymous';
       const action = entry.action || '';
